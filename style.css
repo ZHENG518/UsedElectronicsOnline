@@ -1,0 +1,37 @@
+*{
+			margin: 0;
+			padding: 0;
+		}
+		.header{
+			width: 100%;
+			margin: 7px auto;
+			background-color:gray;
+		}
+		.content{
+			margin: 3px auto;
+			width: 95%;
+			height: 500px;
+			background-color: green;
+		}
+		.nav{
+			list-style: none;
+			background-color: gray;
+			width: 95%;
+			margin: 10px auto;
+			overflow: hidden;
+		}
+		li{
+			float: left;
+		}
+		a{
+			display: block;
+			width: 250px;
+			text-align: center;
+			padding: 3px 0;
+			text-decoration: none;
+			color: white;
+			font-weight: bold;
+		}
+		a:hover{
+			background-color: #BDB76B;
+		}
