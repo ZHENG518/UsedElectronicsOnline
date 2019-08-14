@@ -27,8 +27,8 @@
           <td style="padding-left:20px">
             <h1 style="color:white">Used Electronics Online</h1>
           </td>
-          <td style="padding-right:20px" align="right">
-            <input type="button" value="Login" onClick="location.href='login.html'" />
+          <td style="padding-right:70px" align="right">
+            <input class="login_button" type="button" value="Login" onClick="location.href='login.html'" />
           </td>
         </tr>
       </table>
@@ -46,7 +46,7 @@
 	<script>
 		for(var i =0; i < 10; i++){
 		var post = document.createElement("div");
-		post.innerHTML='<img src="macbook.jpg"><br><b>MackBook Air2018</b><br>$400<br><button>view</button>';
+		post.innerHTML='<img src="macbook.jpg"><br><b>MackBook Air2018</b><br>$400<br><button onclick="location.href=\'ProductDetails.html\'">view</button>';
 			document.getElementById("content").appendChild(post);
 		}
 	</script>
