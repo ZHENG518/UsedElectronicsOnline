@@ -1,0 +1,12 @@
+runtime: php
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /(.+\.(gif|png|jpg|css))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg|css)$
+  application_readable: true
+
+- url: /.*
+  script: index.html
