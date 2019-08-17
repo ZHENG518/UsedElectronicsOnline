@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="style.css" /> 
+        <link rel="stylesheet" type="text/css" href="style.css" />
         <title>Login Page</title>
     </head>
     <body>
@@ -16,54 +16,55 @@
             </table>
           </div>
         <div>
-            <h1 style="text-align:center">Enter your details to register:</h1> 
+            <h1 style="text-align:center">Enter your details to register:</h1>
             <table style="margin: 0 auto">
                 <tr><td>First Name:</td><td><input id="first" size="30" type="text" name="name"></td></tr>
-                <tr><td>Last Name:</td><td><input id="last"size="30" type="text" name="name"></td></tr>
+                <tr><td>Last Name:</td><td><input id="last" size="30" type="text" name="name"></td></tr>
                 <tr><td>Email:</td><td><input id="email" size="30" type="text" name="email"></td></tr>
                 <tr><td>Phone Number:</td><td><input id="phone" size="30" type="text" name="email"></td></tr>
                 <tr><td>Password:</td><td><input id="password" size="30" type="password" name="password"></td></tr>
                 <tr><td></td>
                     <td>
-                        <input type="button" value="Sign Up"> 
+                        <input type="button" value="Sign Up" onClick="submit()">
                         &nbsp; 
-                        <input type="button" value="Home Page">
+                        <input type="button" value="Home Page" onClick="location.href='index.html'">
                     </td>
                 </tr>
             </table>
         </div>
         <script>
           function validate(){
-            function hasblanks(){
-              var fields = new Array("first","last","email","phone","password");
-              for (var i =0; i<fields.length;i++){
-                var field = document.getElementById(fields[i]);
-                if (field.value == "") {
-                return true;
-                }
-              }      
-              return false;
-             }
+        function hasblanks(){
+   var fields = new Array("first","last","email","phone","password");
+   for (var i =0; i<fields.length;i++){
+    var field = document.getElementById(fields[i]);
+    if (field.value == "") {
+     return true;
+    }
+   }
+   return false;
+        }
         
-           if (hasblanks()){
-            alert("One or more compulsory\nfields is blank");
-            return false;
-           }
+     if (hasblanks()){
+   alert("One or more compulsory\nfields is blank");
+   return false;
+        }
         
-          var element = document.getElementById("email");
-          var value = element.value;
-          if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
+  var element = document.getElementById("email");
+  var value = element.value;
+  if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
             alert("The Email address is invalid.");
             return false;
-          }
-            return true;
+        }
+        return true;
         }
 
         function submit(){
-          if(validate()){
-            alert("success!");
-          }
-        }
+   if (validate()){
+    alert("success!");
+    window.location = "login.html";
+   }
+  }
         </script>
     </body>
 </html>
