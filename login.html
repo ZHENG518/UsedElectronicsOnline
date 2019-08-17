@@ -69,6 +69,19 @@
     }
 
     </style>
+<script>
+function validateForm() {
+  var email = document.getElementById("email").value;
+	var password = document.getElementById("psw").value;
+	if(email == "" || password == ""){
+		alert("Please fill the form");
+	}else if (email == "test@gmail.com" && password == "123abc") {
+		window.location = "newPost.html";
+	}else {
+		alert("invalid email or password!");
+	}
+}
+</script>
   </head>
 <body>
 <div class="imgcontainer">
@@ -76,13 +89,13 @@
     <img src="login.png" alt="Image" class="image">
 </div>
 <div class="container">
-  <label for="uname"><b>Username</b></label>
-  <input type="text" placeholder="Email or Phone number" name="uname" required>
+  <label for="email"><b>Email</b></label>
+  <input id="email" type="text" placeholder="Email" name="email" required>
 
   <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Password" name="psw" required>
+  <input id="psw" type="password" placeholder="Password" name="psw" required>
 
-  <button type="submit" onclick="location.href='newPost.html'">Login</button>
+  <button type="submit" onclick ="validateForm()">Login</button>
 </div>
 <div class="container" style="background-color:#f1f1f1">
   <button type="button" onclick="location.href='register.html'" class="cancelbtn">Register</button>
