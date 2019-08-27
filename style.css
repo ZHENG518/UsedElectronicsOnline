@@ -30,7 +30,16 @@
 			overflow: hidden;
 			text-align: center;
 		}
-
+		
+		.user{
+			list-style: none;
+			background-color: gray;
+			width: 95%;
+			margin: 10px auto;
+			overflow: hidden;
+			text-align: center;
+		}
+		
 		.login_button{
 			padding: 7px 16px 7px 16px;
 			border-radius: 7px;
@@ -67,7 +76,10 @@
 
 		}
 
-
+		.user li{
+			float: left;
+			vertical-align:middle;
+		}
 
 		li{
 			float: left;
