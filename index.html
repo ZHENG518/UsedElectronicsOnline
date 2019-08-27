@@ -5,50 +5,76 @@
 	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<style type="text/css">
-	img {
-        width: 100%;
-      }
-      .content div {
-        width: 23%;
-        height: 420px;
-        border: 2px solid;
-        font-size: 20px;
-        margin: 1px;
-        padding: 5px;
-        float: left;
-      }
+		img {
+			width: 100%;
+		}
+		.content div {
+			width: 23%;
+			height: 420px;
+			border: 2px solid;
+			font-size: 20px;
+			margin: 1px;
+			padding: 5px;
+			float: left;
+		}
 	</style>
 </head>
 
 <body>
 	<div class="header">
-      <table border="0" height="100%" width="100%" style="table-layout:fixed;">
-        <tr>
-          <td style="padding-left:20px">
-            <h1 style="color:white">Used Electronics Online</h1>
-          </td>
-          <td style="padding-right:70px" align="right">
-            <input class="login_button" type="button" value="Login" onClick="location.href='login.html'" />
-          </td>
-        </tr>
-      </table>
-    </div>
+		<table border="0" height="100%" width="100%" style="table-layout:fixed;">
+			<tr>
+				<td style="padding-left:20px">
+					<h1 style="color:white">Used Electronics Online</h1>
+				</td>
+				<td id="header-right" style="padding-right:70px" align="right">
+				</td>
+			</tr>
+		</table>
+	</div>
 	<div>
 		<ul class="nav">
-		<li><a>Laptop</a></li>
-		<li><a>Phone</a></li>
-		<li><a>Camera</a></li>
-		<li><a>Others</a></li>
+			<li><a>All</a></li>
+			<li><a>Laptop</a></li>
+			<li><a>Phone</a></li>
+			<li><a>Camera</a></li>
+			<li><a>Others</a></li>
 		</ul>
 	</div>
 
 	<div class="content" id="content"></div>
 	<script>
-		for(var i =0; i < 10; i++){
-		var post = document.createElement("div");
-		post.innerHTML='<img src="macbook.jpg"><br><b>MackBook Air2018</b><br>$400<br><button onclick="location.href=\'ProductDetails.html\'">view</button>';
+		var firebaseConfig = {
+			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+			authDomain: "used-electronics-online.firebaseapp.com",
+			databaseURL: "https://used-electronics-online.firebaseio.com",
+			projectId: "used-electronics-online",
+			storageBucket: "used-electronics-online.appspot.com",
+			messagingSenderId: "575629351639",
+			appId: "1:575629351639:web:d9317118bcf7391e"
+		};
+		firebase.initializeApp(firebaseConfig);
+		firebase.auth().onAuthStateChanged(firebaseUser=>{
+			if(firebaseUser){
+				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="My account"/></li><li><input class="login_button" type="button" value="New Post" onClick="location.href=\'newpost.html\'"/></li><li><input id="logout" onClick="logout()"class="login_button" type="button" value="Logout"/></li></ul>';
+				console.log(firebaseUser.email);
+			}else{
+				document.getElementById("header-right").innerHTML = '<input class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
+				console.log('not logged in');
+			}
+		});
+	var postRef = firebase.database().ref("post");
+	postRef.on("value",function(snapshot){
+		snapshot.forEach(function(childSnapshot){
+			var post = document.createElement("div");
+			post.innerHTML='<img src="macbook.jpg"><br><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 			document.getElementById("content").appendChild(post);
-		}
-	</script>
+		});
+	});
+
+	function logout() {
+		firebase.auth().signOut();
+	}
+</script>
 </body>
 </html>
