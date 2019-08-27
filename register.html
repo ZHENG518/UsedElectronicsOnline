@@ -1,70 +1,108 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Login Page</title>
-    </head>
-    <body>
-        <div class="header">
-            <table border="0" height="100%" width="100%" style="table-layout:fixed;">
-              <tr>
-                <td style="padding-left:20px">
-                  <h1 style="color:white">Used Electronics Oline</h1>
-                </td>
-              </tr>
-            </table>
-          </div>
-        <div>
-            <h1 style="text-align:center">Enter your details to register:</h1>
-            <table style="margin: 0 auto">
-                <tr><td>First Name:</td><td><input id="first" size="30" type="text" name="name"></td></tr>
-                <tr><td>Last Name:</td><td><input id="last" size="30" type="text" name="name"></td></tr>
-                <tr><td>Email:</td><td><input id="email" size="30" type="text" name="email"></td></tr>
-                <tr><td>Phone Number:</td><td><input id="phone" size="30" type="text" name="email"></td></tr>
-                <tr><td>Password:</td><td><input id="password" size="30" type="password" name="password"></td></tr>
-                <tr><td></td>
-                    <td>
-                        <input type="button" value="Sign Up" onClick="submit()">
-                        &nbsp; 
-                        <input type="button" value="Home Page" onClick="location.href='index.html'">
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <script>
-          function validate(){
-        function hasblanks(){
-   var fields = new Array("first","last","email","phone","password");
-   for (var i =0; i<fields.length;i++){
-    var field = document.getElementById(fields[i]);
-    if (field.value == "") {
-     return true;
-    }
-   }
-   return false;
-        }
-        
-     if (hasblanks()){
-   alert("One or more compulsory\nfields is blank");
-   return false;
-        }
-        
-  var element = document.getElementById("email");
-  var value = element.value;
-  if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
-            alert("The Email address is invalid.");
-            return false;
-        }
-        return true;
-        }
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <title>Create an Account</title>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+</head>
+<body>
+  <div class="header">
+    <table border="0" height="100%" width="100%" style="table-layout:fixed;">
+      <tr>
+        <td style="padding-left:20px">
+          <h1 style="color:white">Used Electronics Oline</h1>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <h1 style="text-align:center">Enter your details to register:</h1>
+    <table style="margin: 0 auto">
+      <tr><td>First Name:</td><td><input id="first" size="30" type="text" name="name"></td></tr>
+      <tr><td>Last Name:</td><td><input id="last" size="30" type="text" name="name"></td></tr>
+      <tr><td>Email:</td><td><input id="email" size="30" type="text" name="email"></td></tr>
+      <tr><td>Phone Number:</td><td><input id="phone" size="30" type="text" name="email"></td></tr>
+      <tr><td>Password:</td><td><input id="password" size="30" type="password" name="password"></td></tr>
+      <tr><td></td>
+        <td>
+          <input style="font-size: 13px" class="back_button" type="button" value="Sign Up" onClick="submit()">
+          &nbsp; 
+          <input style="font-size: 13px" class="back_button" type="button" value="Home Page" onClick="location.href='index.html'">
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+      authDomain: "used-electronics-online.firebaseapp.com",
+      databaseURL: "https://used-electronics-online.firebaseio.com",
+      projectId: "used-electronics-online",
+      storageBucket: "used-electronics-online.appspot.com",
+      messagingSenderId: "575629351639",
+      appId: "1:575629351639:web:d9317118bcf7391e"
+    };
+    firebase.initializeApp(firebaseConfig);
 
-        function submit(){
-   if (validate()){
-    alert("success!");
-    window.location = "login.html";
+    const txtEmail = document.getElementById("email");
+    const txtPassword = document.getElementById("password");
+
+    function validate(){
+
+      function hasblanks(){
+       var fields = new Array("first","last","email","phone","password");
+       for (var i =0; i<fields.length;i++){
+        var field = document.getElementById(fields[i]);
+        if (field.value == "") {
+         return true;
+       }
+     }
+     return false;
    }
+
+   if (hasblanks()){
+     alert("One or more compulsory\nfields is blank");
+     return false;
+   }
+
+   var element = document.getElementById("email");
+   var value = element.value;
+   if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
+    alert("The Email address is invalid.");
+    return false;
   }
-        </script>
-    </body>
+  return true;
+}
+
+function submit(){
+ if (validate()){
+  const email = txtEmail.value;
+  const pass = txtPassword.value;
+  const auth = firebase.auth();
+
+  const promise = auth.createUserWithEmailAndPassword(email, pass);
+  promise.catch(function(error){
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    if(errorCode == 'auth/email-already-in-use'){
+      alert('Already exists an account with the email');
+    }else{
+      alert(errorMessage);
+    }
+    console.log(errorMessage);
+  });
+}
+}
+  firebase.auth().onAuthStateChanged(firebaseUser=>{
+    if(firebaseUser){
+      window.location = "index.html";
+      console.log(firebaseUser);
+    }else{
+      console.log('not logged in');
+    }
+    //window.location = 'index.html'
+  });
+</script>
+</body>
 </html>
