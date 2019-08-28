@@ -88,6 +88,7 @@
         alert("Please fill the form");
       }else {
         const auth = firebase.auth();
+				//User login
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise.catch(function(error){
           var errorCode = error.code;

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<style>
+    body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+		input{
+			height: 30px;
+			width: 250px;
+		}
+    .container {
+			width: 437px;
+			margin: 300px auto;
+    }
+
+		.button{
+			width: 50%;
+			margin: 0 auto;
+		}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+		<h2>Admin Login</h2>
+		<table cellspacing="30px">
+			<tr>
+				<td><label for="uname"><b>User ID</b></label></td>
+				<td><input id="uname" type="text" placeholder="User Name" name="uname" required></td>
+			</tr>
+			<tr>
+				<td><label for="psw"><b>Password</b></label></td>
+				<td><input id="psw" type="password" placeholder="Password" name="psw" required></td>
+			</tr>
+		</table>
+		<div class="button">
+			<button class="back_button">Login</button>
+			<button onclick="location.href='index.html'" class="back_button">Back</button>
+		</div>
+  </div>
+
+</body>
