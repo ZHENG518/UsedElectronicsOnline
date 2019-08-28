@@ -9,25 +9,42 @@
 			height: 30px;
 			width: 250px;
 		}
-    .container {
-			width: 437px;
-			margin: 300px auto;
-    }
 
 		.button{
-			width: 50%;
 			margin: 0 auto;
+		}
+
+		.container{
+			padding: 30px 10px;
+			position: absolute;
+			background-color: #B87070;
+
+			top:50%;
+			left:50%;
+			margin-left: -200px;
+			margin-top: -100px;
 		}
 
   </style>
 </head>
 <body>
+	<div class="header">
+		<table border="0" height="100%" width="100%" style="table-layout:fixed;">
+			<tr>
+				<td style="padding-left:20px">
+					<h1 style="color:white">Used Electronics Online</h1>
+				</td>
+				<td id="header-right" style="padding-right:70px" align="right">
+				</td>
+			</tr>
+		</table>
+	</div>
   <div class="container">
 		<h2>Admin Login</h2>
 		<table cellspacing="30px">
 			<tr>
 				<td><label for="uname"><b>User ID</b></label></td>
-				<td><input id="uname" type="text" placeholder="User Name" name="uname" required></td>
+				<td><input id="uname" type="text" placeholder="User ID" name="uname" required></td>
 			</tr>
 			<tr>
 				<td><label for="psw"><b>Password</b></label></td>
