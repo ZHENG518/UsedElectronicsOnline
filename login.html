@@ -68,36 +68,72 @@
       cursor: pointer;
     }
 
-    </style>
-<script>
-function validateForm() {
-  var email = document.getElementById("email").value;
-	var password = document.getElementById("psw").value;
-	if(email == "" || password == ""){
-		alert("Please fill the form");
-	}else if (email == "test@gmail.com" && password == "123abc") {
-		window.location = "newPost.html";
-	}else {
-		alert("invalid email or password!");
-	}
-}
-</script>
-  </head>
+  </style>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+      authDomain: "used-electronics-online.firebaseapp.com",
+      databaseURL: "https://used-electronics-online.firebaseio.com",
+      projectId: "used-electronics-online",
+      storageBucket: "used-electronics-online.appspot.com",
+      messagingSenderId: "575629351639",
+      appId: "1:575629351639:web:d9317118bcf7391e"
+    };
+    firebase.initializeApp(firebaseConfig);
+    function validateForm() {
+      var email = document.getElementById("email").value;
+      var pass = document.getElementById("psw").value;
+      if(email == "" || pass == ""){
+        alert("Please fill the form");
+      }else {
+        const auth = firebase.auth();
+        const promise = auth.signInWithEmailAndPassword(email, pass);
+        promise.catch(function(error){
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          if(errorCode === 'auth/user-not-found'){
+            alert('The account is not exist');
+          }else if(errorCode === 'auth/invalid-email'){
+            alert('Invalid Email Address')
+          }else if(errorCode === 'auth/wrong-password'){
+            alert('The password is incorrect')
+          }else{
+            alert(errorMessage);
+          }
+          console.log(error.message);
+        });
+      }
+    }
+
+    firebase.auth().onAuthStateChanged(firebaseUser=>{
+    if(firebaseUser){
+      window.location = "index.html";
+      console.log(firebaseUser.uid);
+    }else{
+      console.log('not logged in');
+    }
+  });
+
+
+
+  </script>
+</head>
 <body>
-<div class="imgcontainer">
+  <div class="imgcontainer">
     <span class="close" title="Close Modal" onClick="location.href='index.html'">&times;</span>
     <img src="login.png" alt="Image" class="image">
-</div>
-<div class="container">
-  <label for="email"><b>Email</b></label>
-  <input id="email" type="text" placeholder="Email" name="email" required>
+  </div>
+  <div class="container">
+    <label for="email"><b>Email</b></label>
+    <input id="email" type="text" placeholder="Email" name="email" required>
 
-  <label for="psw"><b>Password</b></label>
-  <input id="psw" type="password" placeholder="Password" name="psw" required>
+    <label for="psw"><b>Password</b></label>
+    <input id="psw" type="password" placeholder="Password" name="psw" required>
 
-  <button type="submit" onclick ="validateForm()">Login</button>
-</div>
-<div class="container" style="background-color:#f1f1f1">
-  <button type="button" onclick="location.href='register.html'" class="cancelbtn">Register</button>
-</div>
+    <button type="submit" onclick ="validateForm()">Login</button>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+    <button type="button" onclick="location.href='register.html'" class="cancelbtn">Register</button>
+  </div>
 </body>
