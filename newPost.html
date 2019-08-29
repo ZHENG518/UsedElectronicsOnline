@@ -23,6 +23,9 @@
       cursor: pointer;
     }
 
+    #descrip{
+      height: 200px;
+    }
     .button:hover {opacity: 1}
     .all{margin:0 auto;}
   </style>
@@ -60,7 +63,7 @@
             </tr>
             <tr>
               <td style="padding:15px"><label>Price</label></td>
-              <td style="padding-left:40px"><input id="price" type="text" style="width:150%"></td>
+              <td style="padding-left:40px"><input onkeyup="value=value.replace(/[^\d.]/g,'')"id="price" style="width:150%"></td>
             </tr>
             <tr>
               <td style="padding:15px"><label>Category</label></td>
@@ -76,7 +79,7 @@
             </tr>
             <tr>
               <td style="padding:15px"><label>Product Description</label></td>
-              <td style="padding-left:40px"><input id="descrip" type="text" style="width:150%;"></td>
+              <td style="padding-left:40px"><textarea id="descrip" type="text" style="width:150%;"></textarea></td>
             </tr>
 
             <tr>
@@ -128,6 +131,9 @@
        }
        return false;
      }
+     function jump(){
+      window.location.href='index.html';
+     }
 
     function submit()
     {
@@ -139,16 +145,15 @@
         const category = document.getElementById("category").value;
         const descrip = document.getElementById("descrip").value;
         var postRef = firebase.database().ref('post');
-        var newPost = postRef.push();
-        newPost.set({
+        var newPost = postRef.push({
           'title':title,
           'price':price,
           'category':category,
           'description':descrip,
-          'userid':firebase.auth().currentUser.uid
+          //'userid':firebase.auth().currentUser.uid
         });
         alert("Successful!!");
-        //window.location.href='index.html';
+        setTimeout("jump()",800);
       }
     }
   </script>
