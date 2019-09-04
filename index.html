@@ -34,11 +34,11 @@
 	</div>
 	<div>
 		<ul class="nav">
-			<li><a>All</a></li>
-			<li><a>Laptop</a></li>
-			<li><a>Phone</a></li>
-			<li><a>Camera</a></li>
-			<li><a>Others</a></li>
+			<li><a href="javascript:void(0);" onclick="showall()">All</a></li>
+			<li><a href="javascript:void(0);" onclick="show('Laptop')">Laptop</a></li>
+			<li><a href="javascript:void(0);" onclick="show('Phone')">Phone</a></li>
+			<li><a href="javascript:void(0);" onclick="show('Camera')">Camera</a></li>
+			<li><a href="javascript:void(0);" onclick="show('Others')">Others</a></li>
 		</ul>
 	</div>
 
@@ -63,17 +63,42 @@
 				console.log('not logged in');
 			}
 		});
+
 	var postRef = firebase.database().ref("post");
+
 	postRef.on("value",function(snapshot){
 		snapshot.forEach(function(childSnapshot){
 			var post = document.createElement("div");
-			post.innerHTML='<img src="macbook.jpg"><br><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
+			post.innerHTML='<img src="'+childSnapshot.val().pictureURL+'"><br><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 			document.getElementById("content").appendChild(post);
 		});
 	});
 
+	function showall(){
+	postRef.on("value",function(snapshot){
+		document.getElementById("content").innerHTML = "";
+		snapshot.forEach(function(childSnapshot){
+			var post = document.createElement("div");
+			post.innerHTML='<img src="'+childSnapshot.val().pictureURL+'"><br><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
+			document.getElementById("content").appendChild(post);
+		});
+	});
+}
+
 	function logout() {
 		firebase.auth().signOut();
+	}
+
+	function show(category){
+		document.getElementById("content").innerHTML = "";
+		var query = firebase.database().ref("post").orderByChild("category").equalTo(category);
+		query.on("value", function(snapshot){
+			snapshot.forEach(function(childSnapshot){
+				var post = document.createElement("div");
+				post.innerHTML='<img src="'+childSnapshot.val().pictureURL+'"><br><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
+				document.getElementById("content").appendChild(post);
+			});
+		});
 	}
 </script>
 </body>
