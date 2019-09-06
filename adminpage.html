@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Login</title>
+	<title>Used Electronics Online Admin</title>
 	<link rel="stylesheet" type="text/css" href="style.css" />
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
@@ -26,8 +26,7 @@
 			margin-left: -200px;
 			margin-top: -100px;
 		}
-
-  </style>
+    </style>
 </head>
 <body>
 	<div class="header">
@@ -41,8 +40,8 @@
 			</tr>
 		</table>
 	</div>
-  <div class="container">
-		<h2>Admin Login</h2>
+	  <div class="container">
+		<h2>Create a new admin account</h2>
 		<table cellspacing="30px">
 			<tr>
 				<td><label for="uname"><b>ID</b></label></td>
@@ -50,16 +49,16 @@
 			</tr>
 			<tr>
 				<td><label for="psw"><b>Password</b></label></td>
-				<td><input id="psw" type="password" placeholder="Password" name="psw" required></td>
+				<td><input id="psw" type="text" placeholder="Password" name="psw" required></td>
 			</tr>
 		</table>
 		<div class="button">
-			<button onclick="submit()" class="back_button">Login</button>
-			<button onclick="location.href='index.html'" class="back_button">Home page</button>
+			<button onclick="submit()" class="back_button">Create</button>
+			<button onclick="location.href='admin.html'" class="back_button">Back</button>
 		</div>
   </div>
 
-  <script>
+    <script>
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
@@ -78,20 +77,18 @@
   		if(uname == "" || psw == ""){
      		alert("Please fill the form");
       	}else{
-      		firebase.database().ref('administrator/'+uname).once('value').then(function(snapshot){
-      			if(snapshot.val() == null){
-      				alert("Wrong ID or Password");
+      		var ref = firebase.database().ref('administrator/'+uname);
+      		ref.once('value').then(function(snapshot){
+      			if(snapshot.val() != null){
+      				alert("The ID is already exist");
       			}else{
-      				if(psw == snapshot.val().password){
-      					window.location.href='adminpage.html';
-      				}else{
-      					alert("Wrong ID or Password");
-      				}
+      				ref.set({password: psw});
+      				alert("New admin accout created\nID: "+uname+"\nPassword: "+psw);
       			}
       		});
       	}
   	}
 
   </script>
-
 </body>
+</html>
