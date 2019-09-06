@@ -4,7 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <link rel="stylesheet" type="text/css" href="style.css" />
   <title>Create an Account</title>
-  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
   <style>
     .content{
       margin-top: 50px;
@@ -56,6 +58,10 @@
 
     const txtEmail = document.getElementById("email");
     const txtPassword = document.getElementById("password");
+    const txtfName = document.getElementById("first");
+    const txtlName = document.getElementById("last");
+    const txtpNumber = document.getElementById("phone");
+
 
     function validate(){
 
@@ -103,10 +109,27 @@ function submit(){
   });
 }
 }
+  function jump(){
+    window.location.href='index.html';
+    }
+
   firebase.auth().onAuthStateChanged(firebaseUser=>{
     if(firebaseUser){
-      window.location = "index.html";
-      console.log(firebaseUser);
+      var id = firebaseUser.uid;
+      var first = txtfName.value;
+      var last = txtlName.value;
+      var phone = txtpNumber.value;
+      var email = txtEmail.value;
+
+      var newUserRef = firebase.database().ref('user/'+id);
+      newUserRef.set({
+        fName: first,
+        lName: last,
+        pNumber: phone,
+        email: email
+      });
+      setTimeout("jump()",800);
+      console.log(id);
     }else{
       console.log('not logged in');
     }
