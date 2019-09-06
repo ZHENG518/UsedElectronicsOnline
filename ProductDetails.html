@@ -16,14 +16,14 @@
 
 
 	<div style="padding-left:300px; float:left;">
-		<img src="macbook.jpg" height="350" width="400">
+		<img id="pic" src="" height="350" width="400">
 	</div>
 
 	<div style="padding-right:280px; float:right; padding-top: 80px; text-align: left;" >
 		<table border="0" height="350" width="380">
 			<div><tr>
 				<th>Publiser:  </th>
-				<td>Beilei</td>
+				<td id="publisher"></td>
 			</tr>
 
 			<tr>
@@ -33,19 +33,17 @@
 			</tr>
 				<tr>
 				<th>Category:  </th>
-				<td>
-					<p >Laptop</p>
-				</td>
+				<td id="category"></td>
 			</tr>
 			</tr>
 				<tr>
 				<th>ContactNo:  </th>
-				<td>0444555666</td>
+				<td id="phone"></td>
 			</tr>
 		</tr>
 			<tr>
 				<th>Email:  </th>
-				<td>12345@gmail.com</td>
+				<td id="email"></td>
 			</tr>
 		<tr>
 				<th valign="top">Content:  </th>
@@ -78,13 +76,24 @@
 			var title = snapshot.val().title;
 			var price = snapshot.val().price;
 			var discrp = snapshot.val().description;
+			var pic = snapshot.val().pictureURL;
+			var category = snapshot.val().category;
+			var userid = snapshot.val().userid;
+
+			var userRef = firebase.database().ref("/user/"+userid).once('value').then(function(snap){
+				document.getElementById("publisher").innerHTML = snap.val().fName;
+				document.getElementById("phone").innerHTML = snap.val().pNumber;
+				document.getElementById("email").innerHTML = snap.val().email;
+			});
 
 			document.getElementById("Title").innerHTML = title;
 			document.getElementById("Price").innerHTML = price;
 			document.getElementById("Discrp").innerHTML = discrp;
+			document.getElementById("category").innerHTML = "<p>"+category+"</p>"
+			document.getElementById("pic").src = pic;
 
 		});
-		console.log()
+
 
 
 	</script>
