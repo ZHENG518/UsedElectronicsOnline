@@ -43,10 +43,11 @@
 
 
   <div class="all">
+
     <div class="image" style="width:20%; float: left; padding-left: 130px" >
       <table>
         <tr>
-          <td><img id ="pic"></td>
+          <td><img style="width: 200px" id ="pic" src="a.png"></td>
         </tr>
         <tr>
           <td><input type="file" value="upload" id="fileButton"></td>
@@ -106,6 +107,7 @@
         firebase.initializeApp(firebaseConfig);
         var uploader = document.getElementById('uploader');
         var fileButton = document.getElementById('fileButton');
+        var picURL = "";
 
         fileButton.addEventListener('change', function(e){
           var file = e.target.files[0];
@@ -114,8 +116,9 @@
           task.on('state_changed',
             function complete(){
               var pic = document.getElementById('pic');
-              storageRef.getDownloadURL().then(function(result){
-                pic.src = result;
+                storageRef.getDownloadURL().then(function(result){
+                  picURL = result;
+                  pic.src = result;
               }).catch(function (error){
               })
             });
@@ -139,6 +142,8 @@
     {
       if(hasblanks()){
         alert("Please fill in all the blanks");
+      }else if(picURL== ""){
+        alert("Please upload a picture");
       }else{
         const title = document.getElementById("title").value;
         const price = document.getElementById("price").value;
@@ -150,7 +155,8 @@
           'price':price,
           'category':category,
           'description':descrip,
-          //'userid':firebase.auth().currentUser.uid
+          'pictureURL': picURL,
+          'userid':firebase.auth().currentUser.uid
         });
         alert("Successful!!");
         setTimeout("jump()",800);
