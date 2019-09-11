@@ -4,7 +4,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <link rel="stylesheet" type="text/css" href="style.css" />
   <title>Create an Account</title>
-  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-database.js"></script>
   <style>
     .content{
       margin-top: 50px;
@@ -28,14 +30,14 @@
   <div class="content">
     <h1 style="text-align:center">Enter your details to register:</h1>
     <table cellspacing="30px" style="margin: 0 auto">
-      <tr><td align="right">First Name:</td><td><input id="first" size="30" type="text" name="name"></td></tr>
-      <tr><td align="right">Last Name:</td><td><input id="last" size="30" type="text" name="name"></td></tr>
+      <tr><td align="right">First Name:</td><td><input id="first" size="30" type="text" name="fname"></td></tr>
+      <tr><td align="right">Last Name:</td><td><input id="last" size="30" type="text" name="lname"></td></tr>
       <tr><td align="right">Email:</td><td><input id="email" size="30" type="text" name="email"></td></tr>
-      <tr><td align="right">Phone Number:</td><td><input id="phone" size="30" type="text" name="email"></td></tr>
+      <tr><td align="right">Phone Number:</td><td><input id="phone" size="30" type="text" name="phone"></td></tr>
       <tr><td align="right">Password:</td><td><input id="password" size="30" type="password" name="password"></td></tr>
       <tr><td></td>
         <td>
-          <input style="font-size: 13px" class="back_button" type="button" value="Sign Up" onClick="submit()">
+          <input name="submit" style="font-size: 13px" class="back_button" type="button" value="Sign Up" onClick="submit()">
           &nbsp; 
           <input style="font-size: 13px" class="back_button" type="button" value="Home Page" onClick="location.href='index.html'">
         </td>
@@ -56,6 +58,10 @@
 
     const txtEmail = document.getElementById("email");
     const txtPassword = document.getElementById("password");
+    const txtfName = document.getElementById("first");
+    const txtlName = document.getElementById("last");
+    const txtpNumber = document.getElementById("phone");
+
 
     function validate(){
 
@@ -103,10 +109,27 @@ function submit(){
   });
 }
 }
+  function jump(){
+    window.location.href='index.html';
+    }
+
   firebase.auth().onAuthStateChanged(firebaseUser=>{
     if(firebaseUser){
-      window.location = "index.html";
-      console.log(firebaseUser);
+      var id = firebaseUser.uid;
+      var first = txtfName.value;
+      var last = txtlName.value;
+      var phone = txtpNumber.value;
+      var email = txtEmail.value;
+
+      var newUserRef = firebase.database().ref('user/'+id);
+      newUserRef.set({
+        fName: first,
+        lName: last,
+        pNumber: phone,
+        email: email
+      });
+      setTimeout("jump()",800);
+      console.log(id);
     }else{
       console.log('not logged in');
     }
