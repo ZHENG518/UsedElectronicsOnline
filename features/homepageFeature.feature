@@ -1,12 +1,15 @@
 Feature: Homepage Features
+  As a Used Electronic Online user
+  I want to view posts by category
+  So that I can find posts related to the product I want
 
-  Scenario: Test login button enabled
+  Background: User navigates to login page 
     Given I visit Used Electronics Online website
-    When I clik the login button
-    Then I should see the login page
+
+  Scenario: view all of post
+    Then I should see all of post
 
   Scenario Outline: Test category buttons
-    Given I visit Used Electronics Online website
     Then I should see "<category>" button
 
     Examples:
