@@ -1,9 +1,7 @@
-var firebase = require("firebase/app");
-
-require("firebase/auth");
-require("firebase/database");
-
 function getPostsByCategory(category){
+	var firebase = require("firebase/app");
+    require("firebase/auth");
+	require("firebase/database");
 	var firebaseConfig = {
 		apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
 		authDomain: "used-electronics-online.firebaseapp.com",
@@ -17,8 +15,9 @@ function getPostsByCategory(category){
     	firebase.initializeApp(firebaseConfig);
 	}
 
-	var posts = [];
-	var query = firebase.database().ref("post").orderByChild("category").equalTo(category);
+	var posts;
+	var ref = firebase.database().ref("post");
+	var query = ref.orderByChild("category").equalTo(category);
 	query.on("value", function(snapshot){
 		snapshot.forEach(function(childSnapshot){
 			posts.push({
@@ -29,6 +28,7 @@ function getPostsByCategory(category){
 			});
 		});
 	});
+	firebase.database().goOffline();
 	return posts;
 };
 

@@ -1,11 +1,12 @@
 const assert = require('chai').assert;
-const getPostsByCategory = require('../index');
+const getPostsByCategory = require('../js/index');
 
 describe('test index.js',function(){
 	describe('test getPostsByCategory fucntion', function(){
 		it('get pots of <Laptop> category', function(){
 			assert.isNotNull(getPostsByCategory("Laptop"));
 		});
+		
 		it('get pots of <Camera> category', function(){
 			assert.isNotNull(getPostsByCategory("Camera"));
 		});
@@ -17,3 +18,4 @@ describe('test index.js',function(){
 		});
 	});
 });
+
