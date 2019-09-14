@@ -26,5 +26,8 @@
   },
   "dependencies": {
     "firebase": "^6.6.0"
+  },
+  "directories": {
+    "test": "test"
   }
 }
