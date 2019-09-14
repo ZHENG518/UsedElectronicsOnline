@@ -4,6 +4,14 @@
 	<title>Used Electronics</title>
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<style type="text/css">
+		#post{
+			max-width: 100%;
+    		max-height: 100%;
+    		padding: 0 auto;
+    		padding-top: 20px;
+		}
+	</style>
 </head>
 
 <body>
@@ -14,12 +22,14 @@
 	<br>
 	<h1 id="Title" style="color:black; text-align:center; padding-top: 40px;"></h1>
 
-	<div style="padding-left:20%; float:left;">
-		<img id="pic" src="" height="350" width="400">
+
+	<div id="post">
+	<div style="padding-left:20%;  height:100%; width:30%; float:left;">
+		<img id="pic" src="" width="90%">
 	</div>
 
-	<div style="padding-right:20%; float:right; padding-top: 80px; text-align: left;" >
-		<table border="0" height="350" width="380">
+	<div style=" float:right; padding-right:20%; padding-top:5%; height:100%; width:30%; text-align: left;" >
+		<table border="0" style="table-layout:fixed;">
 			<div><tr>
 				<th>Publiser:  </th>
 				<td id="publisher"></td>
@@ -48,12 +58,18 @@
 				<th valign="top">Content:  </th>
 				<td id = "Discrp"></td>
 			</tr>
-			<tr></tr><tr></tr>
-			<tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
+			<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>
 			<tr>
 				<td valign="right"><input class="back_button" type="button" value="Back" onClick="location.href='index.html'" /></td>
 				<td></td> 
 			</tr>
+	</div>
+
 	</div>
 
 	<script>
