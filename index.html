@@ -85,7 +85,6 @@
 	function showall(){
 	postRef.on("value",function(snapshot){
 		document.getElementById("content").innerHTML = "";
-		post.id="post";
 		snapshot.forEach(function(childSnapshot){
 			var post = document.createElement("div");
 			post.innerHTML='<div id="pic"><img src="'+childSnapshot.val().pictureURL+'"></div><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
