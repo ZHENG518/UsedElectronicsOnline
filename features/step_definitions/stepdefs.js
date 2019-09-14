@@ -63,3 +63,21 @@ Then('I should see details of the post', function () {
 		var diselement = detailDriver.findElement(webdriver.By.id('Discrp'));
 	});
 });
+
+//Xitong
+var newpostdriver;
+Given('I am on new post page', function () {
+	newpostdriver = new webdriver.Builder().forBrowser('chrome').build();
+	return newpostdriver.get('https://used-electronics-online.herokuapp.com/newPost.html');         
+});
+
+When('I fill in title with {string} price with {string} description with {string}', function (title, price, description) {
+	newpostdriver.findElement(webdriver.By.id('title')).sendKeys(title);
+	newpostdriver.findElement(webdriver.By.id('price')).sendKeys(price);
+	newpostdriver.findElement(webdriver.By.id('category')).findElement(webdriver.By.xpath("//option[@value='Camera']")).click;
+	newpostdriver.findElement(webdriver.By.id('descrip')).sendKeys(description);
+});
+
+Then('I create a new post successfully', function () {
+	console.log("new post created");
+});
