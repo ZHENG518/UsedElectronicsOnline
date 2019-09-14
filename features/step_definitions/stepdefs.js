@@ -45,3 +45,21 @@ Then('I should goback to the homepage', function () {
 		register_driver.getCurrentUrl().then(url => {console.log(url);});
 	});
 });
+
+//Beilei
+var detailDriver;
+Given('I am on a post detail page', function () {
+	detailDriver = new webdriver.Builder().forBrowser('chrome').build();
+	return detailDriver.get('https://used-electronics-online.herokuapp.com/ProductDetails.html?id=-Lo4PpcHLBnP9ghFPsg7');         
+});
+
+Then('I should see details of the post', function () {
+	detailDriver.sleep(1000).then(function(){
+		var pubelement = detailDriver.findElement(webdriver.By.id('publisher'));
+		var prielement = detailDriver.findElement(webdriver.By.id('Price'));
+		var catelement = detailDriver.findElement(webdriver.By.id('category'));
+		var phoelement = detailDriver.findElement(webdriver.By.id('phone'));
+		var emailelement = detailDriver.findElement(webdriver.By.id('email'));
+		var diselement = detailDriver.findElement(webdriver.By.id('Discrp'));
+	});
+});
