@@ -9,7 +9,7 @@ setDefaultTimeout(80 * 1000);
 var homepagedriver;
 Given('I visit Used Electronics Online website', function () {
 	homepagedriver = new webdriver.Builder().forBrowser('chrome').build();
-	return homepagedriver.get('https://used-electronics-online.herokuapp.com/');         
+	return homepagedriver.get('https://used-electronics-online.herokuapp.com/');
 });
 
 Then('I should see all of post', function () {
@@ -24,11 +24,33 @@ Then('I should see {string} button', function (category) {
 	});
 });
 
+// Bocheng
+var logindriver;
+Given('I am on login page', function () {
+ logindriver = new webdriver.Builder().forBrowser('chrome').build();
+ return logindriver.get('https://used-electronics-online.herokuapp.com/login.html');
+});
+
+When('I fill in email with {string} and password with {string}', function (value1, value2) {
+ logindriver.findElement(webdriver.By.name('email')).sendKeys(value1);
+ logindriver.findElement(webdriver.By.name('psw')).sendKeys(value2);
+ logindriver.findElement(webdriver.By.name('login')).click();
+});
+
+Then('I should see the homepage', function () {
+ logindriver.sleep(1000).then(function(){
+  logindriver.getCurrentUrl().then(url => {console.log(url);});
+ });
+});
+
+Then('I should see warning message', function () {
+});
+
 //Xu
 var register_driver;
 Given('I am on register page', function () {
 	register_driver = new webdriver.Builder().forBrowser('chrome').build();
-	return register_driver.get('https://used-electronics-online.herokuapp.com/register.html');         
+	return register_driver.get('https://used-electronics-online.herokuapp.com/register.html');
 });
 
 When('I fill in email with {string} password with {string} first name with {string} last name with {string} and phone number with {string}', function (email, password, first, last, phone) {
@@ -50,7 +72,7 @@ Then('I should goback to the homepage', function () {
 var detailDriver;
 Given('I am on a post detail page', function () {
 	detailDriver = new webdriver.Builder().forBrowser('chrome').build();
-	return detailDriver.get('https://used-electronics-online.herokuapp.com/ProductDetails.html?id=-Lo4PpcHLBnP9ghFPsg7');         
+	return detailDriver.get('https://used-electronics-online.herokuapp.com/ProductDetails.html?id=-Lo4PpcHLBnP9ghFPsg7');
 });
 
 Then('I should see details of the post', function () {
@@ -68,7 +90,7 @@ Then('I should see details of the post', function () {
 var newpostdriver;
 Given('I am on new post page', function () {
 	newpostdriver = new webdriver.Builder().forBrowser('chrome').build();
-	return newpostdriver.get('https://used-electronics-online.herokuapp.com/newPost.html');         
+	return newpostdriver.get('https://used-electronics-online.herokuapp.com/newPost.html');
 });
 
 When('I fill in title with {string} price with {string} description with {string}', function (title, price, description) {
