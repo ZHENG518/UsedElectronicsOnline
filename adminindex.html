@@ -19,7 +19,7 @@
 		.container{
 			padding: 30px 10px;
 			position: absolute;
-			background-color: #B87070;
+			background-color: white;
 
 			top:50%;
 			left:50%;
@@ -39,8 +39,10 @@
 				</td>
 			</tr>
 		</table>
+		<h1 id="name"></h1>
 	</div>
-	  <div class="container">
+
+	  <!-- <div class="container">
 		<h2>Create a new admin account</h2>
 		<table cellspacing="30px">
 			<tr>
@@ -56,9 +58,12 @@
 			<button onclick="submit()" class="back_button">Create</button>
 			<button onclick="location.href='admin.html'" class="back_button">Back</button>
 		</div>
-  </div>
+  </div> -->
 
     <script>
+		var url = location.search;
+		var id = url.substr(1).split("=")[1];
+		document.getElementById("name").innerHTML = "Welcome "+id;
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
