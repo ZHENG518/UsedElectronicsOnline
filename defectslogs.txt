@@ -1,0 +1,40 @@
+> UsedElectronicsOnline@1.0.0 test /home/rof/src/github.com/ZHENG518/UsedElectronicsOnline
+> cucumber-js
+
+...................https://used-electronics-online.herokuapp.com/login.html
+..new post created
+......
+
+11 scenarios (11 passed)
+27 steps (27 passed)
+0m09.986s
+https://used-electronics-online.herokuapp.com/register.html
+
+
+
+  test index.js
+    test getPostsByCategory fucntion
+   get pots of <Laptop> category (134ms)
+   get pots of <Camera> category
+   get pots of <Phone> category
+   get pots of <others> category
+
+  test login.js
+    test signInWithEmailAndPassword fucntion
+   login with correct email and password (356ms)
+   login with incorrect password (164ms)
+
+  test newpost.js
+    test newpost fucntion
+   create a new post
+
+  test postdetails.js
+    test getPostById fucntion
+   get post details by id
+
+  test register.js
+    test registerWithEmailAndPassword fucntion
+   regist with email and password (169ms)
+
+
+  9 passing (853ms)

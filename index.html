@@ -87,6 +87,7 @@
 		document.getElementById("content").innerHTML = "";
 		snapshot.forEach(function(childSnapshot){
 			var post = document.createElement("div");
+			post.id="post";
 			post.innerHTML='<div id="pic"><img src="'+childSnapshot.val().pictureURL+'"></div><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 			document.getElementById("content").appendChild(post);
 		});
