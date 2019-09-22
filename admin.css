@@ -68,6 +68,18 @@
 			overflow: hidden;
 			text-align: center;
 		}
+		.user{
+			list-style: none;
+			background-color: gray;
+			width: 95%;
+			margin: 10px auto;
+			overflow: hidden;
+			text-align: center;
+		}
+				.user li{
+			float: left;
+			vertical-align:middle;
+		}
 		a{
 			display: block;
 			width: 100%;

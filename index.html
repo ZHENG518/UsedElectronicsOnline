@@ -63,7 +63,7 @@
 		firebase.initializeApp(firebaseConfig);
 		firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
-				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="My account"/></li><li><input class="login_button" type="button" value="New Post" onClick="location.href=\'newPost.html\'"/></li><li><input id="logout" onClick="logout()"class="login_button" type="button" value="Logout"/></li></ul>';
+				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="My account" onClick="location.href=\'myaccount.html\'"/></li><li><input class="login_button" type="button" value="New Post" onClick="location.href=\'newPost.html\'"/></li><li><input id="logout" onClick="logout()"class="login_button" type="button" value="Logout"/></li></ul>';
 				console.log(firebaseUser.email);
 			}else{
 				document.getElementById("header-right").innerHTML = '<input name="login" class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
