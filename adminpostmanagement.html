@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.posts {
+  background-color: black;
+  color: white;
+  margin: 20px;
+  padding: 20px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+</head>
+<body>
+
+<div class="posts">
+  <h2>iPhone 11</h2>
+  <p>Two years used iPhone 11 with some tiny scratches</p>
+  <span><button class="btn" onclick="deletePosts()">Delete</button></span>
+</div>
+
+<div class="posts">
+  <h2>Note 10</h2>
+  <p>One years used Note 10 with some tiny scratches</p>
+  <span><button class="btn" onclick="deletePosts()">Delete</button></span>
+</div>
+
+<div class="posts">
+  <h2>iPad Pro</h2>
+  <p>Four months used iPad Pro with some tiny scratches</p>
+  <span><button class="btn" onclick="deletePosts()">Delete</button></span>
+</div>
+<script>
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("posts");
+
+// Declare a loop variable
+var i;
+
+// List View
+function deletePosts() {
+  $(".posts").remove()
+}
+
+</script>
+
+</body>
+</html>
