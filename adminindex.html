@@ -26,6 +26,31 @@
 			margin-left: -200px;
 			margin-top: -100px;
 		}
+		.posts {
+		  background-color: #ff6699;
+		  color: white;
+		  margin: 20px;
+		  padding: 20px;
+			height: 50px;
+		}
+		.details{
+			float: left;
+			width: 85%;
+		}
+		.btns{
+			float: left;
+		}
+		.posts .btns .btn {
+		 background-color: #4CAF50; /* Green */
+	   border: none;
+	   color: white;
+	   padding: 15px 32px;
+	   text-align: center;
+	   text-decoration: none;
+	   display: inline-block;
+	   font-size: 16px;
+	   margin: 4px 2px;
+ }
     </style>
 </head>
 <body>
@@ -51,9 +76,37 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			
+			<div class="posts">
+				<div class="details">
+					<h2>iPhone 11</h2>
+				  <p>Two years used iPhone 11 with some tiny scratches</p>
+			</div>
+				<div class="btns">
+			  <button class="btn" onclick="viewPosts()">View</button>
+			</div>
+			</div>
+
+			<div class="posts">
+				<div class="details">
+			  <h2>Note 10</h2>
+			  <p>One years used Note 10 with some tiny scratches</p>
+			</div>
+				<div class="btns">
+ 			 <button class="btn" onclick="viewPosts()">View</button>
+ 		 </div>
+			</div>
+
+			<div class="posts">
+				<div class="details">
+			  <h2>iPad Pro</h2>
+			  <p>Four months used iPad Pro with some tiny scratches</p>
+			</div>
+				<div class="btns">
+			  <button class="btn" onclick="viewPosts()">View</button>
+			</div>
+			</div>
 		</div>
-		
+
 	</div>
 
 	  <!-- <div class="container">
