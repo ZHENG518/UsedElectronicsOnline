@@ -35,7 +35,17 @@
 		}
 		.details{
 			float: left;
-			width: 85%;
+			width: 68%;
+		}
+		.postPic{
+			float: left;
+			width: 55px;
+			height: 55px;
+		}
+		img{
+			max-width: 100%;
+				max-height: 100%;
+				padding: 0 auto;
 		}
 		.btns{
 			float: left;
@@ -77,32 +87,72 @@
 		</div>
 		<div class="maincontent">
 			<div class="posts">
+				<div class="postPic">
+					<img src="MWYK2.jpeg" alt="Italian Trulli">
+				</div>
 				<div class="details">
 					<h2>iPhone 11</h2>
 				  <p>Two years used iPhone 11 with some tiny scratches</p>
 			</div>
 				<div class="btns">
-			  <button class="btn" onclick="viewPosts()">View</button>
+			  <button class="btn" onclick="viewPost()">View</button>
+				<button class="btn" onclick="deletePost()">Delete</button>
 			</div>
 			</div>
 
 			<div class="posts">
+				<div class="postPic">
+					<img src="galaxy-note10_highlights_mobile_kv.jpg" alt="Italian Trulli">
+				</div>
 				<div class="details">
 			  <h2>Note 10</h2>
 			  <p>One years used Note 10 with some tiny scratches</p>
 			</div>
 				<div class="btns">
- 			 <button class="btn" onclick="viewPosts()">View</button>
+				 <button class="btn" onclick="viewPost()">View</button>
+	 			 <button class="btn" onclick="deletePost()">Delete</button>
  		 </div>
 			</div>
 
 			<div class="posts">
+				<div class="postPic">
+					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
+				</div>
 				<div class="details">
 			  <h2>iPad Pro</h2>
 			  <p>Four months used iPad Pro with some tiny scratches</p>
 			</div>
 				<div class="btns">
-			  <button class="btn" onclick="viewPosts()">View</button>
+					<button class="btn" onclick="viewPost()">View</button>
+					<button class="btn" onclick="deletePost()">Delete</button>
+			</div>
+			</div>
+
+			<div class="posts">
+				<div class="postPic">
+					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
+				</div>
+				<div class="details">
+			  <h2>iPad Pro</h2>
+			  <p>Four months used iPad Pro with some tiny scratches</p>
+			</div>
+				<div class="btns">
+					<button class="btn" onclick="viewPost()">View</button>
+					<button class="btn" onclick="deletePost()">Delete</button>
+			</div>
+			</div>
+
+			<div class="posts">
+				<div class="postPic">
+					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
+				</div>
+				<div class="details">
+			  <h2>iPad Pro</h2>
+			  <p>Four months used iPad Pro with some tiny scratches</p>
+			</div>
+				<div class="btns">
+					<button class="btn" onclick="viewPost()">View</button>
+					<button class="btn" onclick="deletePost()">Delete</button>
 			</div>
 			</div>
 		</div>
@@ -157,6 +207,12 @@
       		});
       	}
   	}
+		fucntion viewPost(){
+
+		}
+		function deletePost() {
+
+		}
 
   </script>
 </body>
