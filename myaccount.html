@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
 	<title>Account Management</title>
     <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css"/>
@@ -49,6 +50,64 @@
 
 
   <script>
+=======
+	<title>Used Electronics Online Admin</title>
+	<link rel="stylesheet" type="text/css" href="admin.css" />
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
+	  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+
+	<style>
+    body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+		input{
+			height: 30px;
+			width: 250px;
+		}
+
+		.button{
+			margin: 0 auto;
+		}
+
+		.container{
+			padding: 30px 10px;
+			position: absolute;
+			background-color: white;
+
+			top:50%;
+			left:50%;
+			margin-left: -200px;
+			margin-top: -100px;
+		}
+    </style>
+</head>
+<body>
+	<div class="admin-header">
+		<table border="0" height="100%" width="100%" style="table-layout:fixed;">
+			<tr>
+				<td style="padding-left:20px">
+					<h1 style="color:white">Used Electronics Online</h1>
+				</td>
+				<td id="header-right" style="padding-right:70px" align="right">
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="admin-content">
+		<div class="sidebar">
+			<div class="menu">
+				<ul class="sidemenu">
+					<li><a href="myaccount.html">Manage my Account</a></li>
+					<li><a href="myposts.html">Manage my Posts</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="maincontent">
+			
+		</div>
+		
+	</div>
+    <script>
+>>>>>>> 313b3e3eda2a39a603220a0acfa41d9ecd9972f8
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
@@ -60,6 +119,7 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+<<<<<<< HEAD
 
      function validate(){
 
@@ -97,3 +157,23 @@
 
 
 </html>
+=======
+    var userid;
+    firebase.auth().onAuthStateChanged(firebaseUser=>{
+			if(firebaseUser){
+				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="Homepage" onClick="location.href=\'index.html\'"/></li></ul>';
+				console.log(firebaseUser.email);
+				userid = firebaseUser.uid;
+				    console.log(userid);
+
+			}else{
+				document.getElementById("header-right").innerHTML = '<input name="login" class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
+				console.log('not logged in');
+			}
+		});
+
+
+  </script>
+</body>
+</html>
+>>>>>>> 313b3e3eda2a39a603220a0acfa41d9ecd9972f8

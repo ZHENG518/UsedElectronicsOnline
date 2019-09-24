@@ -20,7 +20,6 @@
 		.content{
 			margin: 3px auto;
 			width: 95%;
-			height: 500px;
 		}
 		.nav{
 			list-style: none;
@@ -84,7 +83,7 @@
 		li{
 			float: left;
 		}
-		a{
+		.nav a{
 			display: block;
 			width: 250px;
 			text-align: center;
@@ -93,7 +92,7 @@
 			color: white;
 			font-weight: bold;
 		}
-		a:hover{
+		.nav a:hover{
 			background-color: #BDB76B;
 		}
 

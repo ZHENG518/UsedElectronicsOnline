@@ -26,6 +26,16 @@
 			margin-left: -200px;
 			margin-top: -100px;
 		}
+		img{
+			max-width: 100%;
+    		max-height: 100%;
+    		padding: 0 auto;
+		}
+				.posts{
+			width:95%;
+			table-layout: fixed;
+			margin: 0 auto;
+		}
     </style>
 </head>
 <body>
@@ -45,20 +55,34 @@
 		<div class="sidebar">
 			<div class="menu">
 				<ul class="sidemenu">
-					<li><a href="adminindex.html">User management</a></li>
-					<li><a href="postmanagement.html">Post management</a></li>
+					<li><a href="adminindex.html">Post management</a></li>
+					<li><a href="usermanagement.html">User management</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="maincontent">
-			
+			<table class="posts" border="1">
+				<tr>
+					<th width="20%">Image</th>
+					<th>Title</th>
+					<th>Price</th>
+					<th>Option</th>
+				</tr>
+				<tr>
+					<td height="60px"><img src="macbook.jpg"></td>
+					<td>title</td>
+					<td>1000</td>
+					<td>
+						<input style="width:50px" type="button" name="View" value="view">
+						<input style="width:50px" type="button" name="delete" value="delete">
+					</td>
+				</tr>
+			</table>
 		</div>
 		
 	</div>
     <script>
-		var url = location.search;
-		var id = url.substr(1).split("=")[1];
-		document.getElementById("name").innerHTML = "Welcome "+id;
+
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
