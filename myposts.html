@@ -3,9 +3,7 @@
 <head>
 	<title>Used Electronics Online Admin</title>
 	<link rel="stylesheet" type="text/css" href="admin.css" />
-	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
-	  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+  	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
 
 	<style>
     body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
@@ -63,22 +61,13 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			You have 5 posts
-			<table class="posts" border="1">
+			<p id="amount"></p>
+			<table id="posts" class="posts" border="1">
 				<tr>
 					<th width="20%">Image</th>
 					<th>Title</th>
 					<th>Price</th>
 					<th>Option</th>
-				</tr>
-				<tr>
-					<td height="60px"><img src="macbook.jpg"></td>
-					<td>title</td>
-					<td>1000</td>
-					<td>
-						<input style="width:50px" type="button" name="View" value="view">
-						<input style="width:50px" type="button" name="delete" value="delete">
-					</td>
 				</tr>
 			</table>
 		</div>
@@ -96,15 +85,32 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+    var userid;
     firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
 				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="Homepage" onClick="location.href=\'index.html\'"/></li></ul>';
 				console.log(firebaseUser.email);
+				userid = firebaseUser.uid;
+
+				var query = firebase.database().ref("post").orderByChild("userid").equalTo(userid);
+				var amount = 0;
+    			query.on("value", function(snapshot){
+					snapshot.forEach(function(childSnapshot){
+						var post = document.createElement("tr");
+						amount += 1;
+    					post.innerHTML ='<td height="60px"><img src="'+childSnapshot.val().pictureURL+'"></td><td>'+childSnapshot.val().title+'</td><td>'+childSnapshot.val().price+'</td><td><input style="width:50px" type="button" name="View" value="view"><input style="width:50px" type="button" name="delete" value="delete"><input style="width:80px" type="button" name="change" value="change price"></td>'
+						document.getElementById("posts").appendChild(post);
+
+					});
+					document.getElementById("amount").innerHTML = 'You have '+amount+' Posts';
+				});
 			}else{
 				document.getElementById("header-right").innerHTML = '<input name="login" class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
 				console.log('not logged in');
 			}
 		});
+
+
   </script>
 </body>
 </html>

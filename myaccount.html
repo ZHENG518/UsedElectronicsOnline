@@ -68,15 +68,21 @@
     };
     firebase.initializeApp(firebaseConfig);
 
+    var userid;
     firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
 				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="Homepage" onClick="location.href=\'index.html\'"/></li></ul>';
 				console.log(firebaseUser.email);
+				userid = firebaseUser.uid;
+				    console.log(userid);
+
 			}else{
 				document.getElementById("header-right").innerHTML = '<input name="login" class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
 				console.log('not logged in');
 			}
 		});
+
+
   </script>
 </body>
 </html>

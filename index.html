@@ -24,6 +24,23 @@
 			padding: 5px;
 			float: left;
 		}
+		.footer{
+			width: 98%;
+			height: 200px;
+			background-color: silver;
+			margin: 0 auto;
+			display: table;;
+		}
+		.footertext{
+			width: 100%;
+			font-size: 25px;
+			color: white;
+			font-weight: bold;
+			text-align:center;
+			display: table-cell;
+        vertical-align:middle;
+        text-align:center; 
+		}
 	</style>
 </head>
 
@@ -50,6 +67,7 @@
 	</div>
 
 	<div class="content" id="content"></div>
+	<div class="footer"><div class="footertext">Can't find what you want?<br>Try to Post a Message on the <a href="demand.html" target="_blank">Demand Board</a>.</div></div>
 	<script>
 		var firebaseConfig = {
 			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
@@ -80,6 +98,9 @@
 			post.innerHTML='<div id="pic"><img src="'+childSnapshot.val().pictureURL+'"></div><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 			document.getElementById("content").appendChild(post);
 		});
+		var clear = document.createElement("div");
+		clear.innerHTML = '<div style="clear: both;"></div>';
+		document.getElementById("content").appendChild(clear);
 	});
 
 	function showall(){
@@ -91,6 +112,9 @@
 			post.innerHTML='<div id="pic"><img src="'+childSnapshot.val().pictureURL+'"></div><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 			document.getElementById("content").appendChild(post);
 		});
+				var clear = document.createElement("div");
+		clear.innerHTML = '<div style="clear: both;"></div>';
+		document.getElementById("content").appendChild(clear);
 	});
 }
 
@@ -108,6 +132,9 @@
 				post.innerHTML='<div id="pic"><img src="'+childSnapshot.val().pictureURL+'"></div><b>'+childSnapshot.val().title+'</b><br>$'+childSnapshot.val().price+'<br><button onclick="location.href=\'ProductDetails.html?id='+childSnapshot.key+'\'">view</button>';
 				document.getElementById("content").appendChild(post);
 			});
+					var clear = document.createElement("div");
+		clear.innerHTML = '<div style="clear: both;"></div>';
+		document.getElementById("content").appendChild(clear);
 		});
 	}
 </script>
