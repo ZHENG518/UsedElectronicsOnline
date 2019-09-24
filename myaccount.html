@@ -1,1 +1,99 @@
-myaccount.html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Account Management</title>
+    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<style type="text/css">
+		*{margin:0;padding:0;}
+		a, ul, li{text-decoration: none;}
+		
+</style> 
+</head>
+
+<body>
+	<div class="header">
+            <h1 style="color:white; text-align: center; font-size: 38px;">Used Electronics Online</h1>
+    </div>
+
+	<br>
+
+	<h1 style="color:black; text-align:center; padding-top: 30px;">Account Management</h1>
+	<br><br>
+	<table cellspacing="20px" style="margin: 0 auto;width: 450px; " >
+	<tr>
+		<td align="right">Name:</td>
+		<td><input type="text" id="name" value="name" size="30" style="height:20px"></td>
+   	</tr>	
+   	<tr>
+		<td align="right">Passward:</td>
+		<td><input type="text" id="passward" value="passward" size="30" style="height:20px"></td>
+   	</tr>
+	<tr>
+		<td align="right">Email:</td>
+		<td><input type="text" id="email" value="email" size="30" style="height:20px"></td>
+	</tr>
+	<tr>
+		<td align="right">Contact No.:</td>
+		<td><input type="text" id="no" value="no" size="30"style="height:20px"></td>
+	</tr>
+	<tr><td></td>
+        <td>
+          <input style="font-size: 15px" class="back_button" type="button" value="Back" onClick="location.href='index.html'">
+          &nbsp; 
+          <input name="save" style="font-size: 15px" class="back_button" type="button" value="Save" onclick="return validate()">
+        </td>
+      </tr>
+	</table>
+
+
+
+  <script>
+  	var firebaseConfig = {
+      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+      authDomain: "used-electronics-online.firebaseapp.com",
+      databaseURL: "https://used-electronics-online.firebaseio.com",
+      projectId: "used-electronics-online",
+      storageBucket: "used-electronics-online.appspot.com",
+      messagingSenderId: "575629351639",
+      appId: "1:575629351639:web:d9317118bcf7391e"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+
+     function validate(){
+
+      function hasblanks(){
+       var fields = new Array("name","passward","email","no");
+       for (var i =0; i<fields.length;i++){
+        var field = document.getElementById(fields[i]);
+        if (field.value == "") {
+         return true;
+       }
+     }
+     return false;
+   }
+
+   if (hasblanks()){
+     alert("One or more compulsory\nfields is blank");
+     return false;
+   }
+
+   var element = document.getElementById("email");
+   var value = element.value;
+   if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
+    alert("The Email address is invalid.");
+    return false; }
+     return true;}
+  	
+
+  </script>    
+	
+
+</body>
+
+
+
+
+
+</html>
