@@ -31,9 +31,8 @@
     		max-height: 100%;
     		padding: 0 auto;
 		}
-				.posts{
+		.posts{
 			width:95%;
-			table-layout: fixed;
 			margin: 0 auto;
 		}
     </style>
@@ -61,21 +60,14 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			<table class="posts" border="1">
+			<table id="users" class="posts" border="1">
 				<tr>
-					<th width="20%">Image</th>
-					<th>Title</th>
-					<th>Price</th>
-					<th>Option</th>
-				</tr>
-				<tr>
-					<td height="60px"><img src="macbook.jpg"></td>
-					<td>title</td>
-					<td>1000</td>
-					<td>
-						<input style="width:50px" type="button" name="View" value="view">
-						<input style="width:50px" type="button" name="delete" value="delete">
-					</td>
+					<th>User ID</th>
+					<th>Email address</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Phone Number</th>
+					<th>Operation</th>
 				</tr>
 			</table>
 		</div>
@@ -93,6 +85,15 @@
       appId: "1:575629351639:web:d9317118bcf7391e"
     };
     firebase.initializeApp(firebaseConfig);
+
+    var userRef = firebase.database().ref("user");
+    userRef.on("value",function(snapshot){
+		snapshot.forEach(function(childSnapshot){
+			var user = document.createElement("tr");
+			user.innerHTML='<td>'+childSnapshot.key+'</td><td>'+childSnapshot.val().email+'</td><td>'+childSnapshot.val().fName+'</td><td>'+childSnapshot.val().lName+'</td><td>'+childSnapshot.val().pNumber+'</td><td><input style="width:50px" type="button" name="delete" value="delete"></td>';
+				document.getElementById("users").appendChild(user);
+			});
+		});
 
   </script>
 </body>
