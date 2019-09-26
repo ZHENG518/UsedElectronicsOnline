@@ -6,7 +6,7 @@
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
 	<style>
-    body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+		body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
 		input{
 			height: 30px;
 			width: 250px;
@@ -27,10 +27,10 @@
 			margin-top: -100px;
 		}
 		.posts {
-		  background-color: #ff6699;
-		  color: white;
-		  margin: 20px;
-		  padding: 20px;
+			background-color: #ff6699;
+			color: white;
+			margin: 20px;
+			padding: 20px;
 			height: 50px;
 		}
 		.details{
@@ -44,24 +44,24 @@
 		}
 		img{
 			max-width: 100%;
-				max-height: 100%;
-				padding: 0 auto;
+			max-height: 100%;
+			padding: 0 auto;
 		}
 		.btns{
 			float: left;
 		}
 		.posts .btns .btn {
-		 background-color: #4CAF50; /* Green */
-	   border: none;
-	   color: white;
-	   padding: 15px 32px;
-	   text-align: center;
-	   text-decoration: none;
-	   display: inline-block;
-	   font-size: 16px;
-	   margin: 4px 2px;
- }
-    </style>
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+		}
+	</style>
 </head>
 <body>
 	<div class="admin-header">
@@ -85,76 +85,8 @@
 				</ul>
 			</div>
 		</div>
-		<div class="maincontent">
-			<div class="posts">
-				<div class="postPic">
-					<img src="MWYK2.jpeg" alt="Italian Trulli">
-				</div>
-				<div class="details">
-					<h2>iPhone 11</h2>
-				  <p>Two years used iPhone 11 with some tiny scratches</p>
-			</div>
-				<div class="btns">
-			  <button class="btn" onclick="viewPost()">View</button>
-				<button class="btn" onclick="deletePost()">Delete</button>
-			</div>
-			</div>
+		<div class="maincontent" id="maincontent">
 
-			<div class="posts">
-				<div class="postPic">
-					<img src="galaxy-note10_highlights_mobile_kv.jpg" alt="Italian Trulli">
-				</div>
-				<div class="details">
-			  <h2>Note 10</h2>
-			  <p>One years used Note 10 with some tiny scratches</p>
-			</div>
-				<div class="btns">
-				 <button class="btn" onclick="viewPost()">View</button>
-	 			 <button class="btn" onclick="deletePost()">Delete</button>
- 		 </div>
-			</div>
-
-			<div class="posts">
-				<div class="postPic">
-					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
-				</div>
-				<div class="details">
-			  <h2>iPad Pro</h2>
-			  <p>Four months used iPad Pro with some tiny scratches</p>
-			</div>
-				<div class="btns">
-					<button class="btn" onclick="viewPost()">View</button>
-					<button class="btn" onclick="deletePost()">Delete</button>
-			</div>
-			</div>
-
-			<div class="posts">
-				<div class="postPic">
-					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
-				</div>
-				<div class="details">
-			  <h2>iPad Pro</h2>
-			  <p>Four months used iPad Pro with some tiny scratches</p>
-			</div>
-				<div class="btns">
-					<button class="btn" onclick="viewPost()">View</button>
-					<button class="btn" onclick="deletePost()">Delete</button>
-			</div>
-			</div>
-
-			<div class="posts">
-				<div class="postPic">
-					<img src="1541002529_1441866.jpg" alt="Italian Trulli">
-				</div>
-				<div class="details">
-			  <h2>iPad Pro</h2>
-			  <p>Four months used iPad Pro with some tiny scratches</p>
-			</div>
-				<div class="btns">
-					<button class="btn" onclick="viewPost()">View</button>
-					<button class="btn" onclick="deletePost()">Delete</button>
-			</div>
-			</div>
 		</div>
 
 	</div>
@@ -175,44 +107,54 @@
 			<button onclick="submit()" class="back_button">Create</button>
 			<button onclick="location.href='admin.html'" class="back_button">Back</button>
 		</div>
-  </div> -->
-    <script>
+	</div> -->
+	<script>
 
-  	var firebaseConfig = {
-      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
-      authDomain: "used-electronics-online.firebaseapp.com",
-      databaseURL: "https://used-electronics-online.firebaseio.com",
-      projectId: "used-electronics-online",
-      storageBucket: "used-electronics-online.appspot.com",
-      messagingSenderId: "575629351639",
-      appId: "1:575629351639:web:d9317118bcf7391e"
-    };
-    firebase.initializeApp(firebaseConfig);
+		var firebaseConfig = {
+			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+			authDomain: "used-electronics-online.firebaseapp.com",
+			databaseURL: "https://used-electronics-online.firebaseio.com",
+			projectId: "used-electronics-online",
+			storageBucket: "used-electronics-online.appspot.com",
+			messagingSenderId: "575629351639",
+			appId: "1:575629351639:web:d9317118bcf7391e"
+		};
+		firebase.initializeApp(firebaseConfig);
 
-  	function submit()
-  	{
-  		var uname = document.getElementById("uname").value;
-  		var psw = document.getElementById("psw").value;
-  		if(uname == "" || psw == ""){
-     		alert("Please fill the form");
-      	}else{
-      		var ref = firebase.database().ref('administrator/'+uname);
-      		ref.once('value').then(function(snapshot){
-      			if(snapshot.val() != null){
-      				alert("The ID is already exist");
-      			}else{
-      				ref.set({password: psw});
-      				alert("New admin accout created\nID: "+uname+"\nPassword: "+psw);
-      			}
-      		});
-      	}
-  	}
-		fucntion viewPost(){
+		var postRef = firebase.database().ref("post");
+		postRef.on("value",function(snapshot){
+			snapshot.forEach(function(childSnapshot){
+				var post = document.createElement("div");
+				post.class="posts";
+				post.innerHTML='<div class="posts"><div class="postPic"><img src="'+childSnapshot.val().pictureURL+'" alt="Italian Trulli"></div><div class="details"><h2>'+childSnapshot.val().title+'</h2><p>'+childSnapshot.val().description+'</p></div><div class="btns"><button class="btn" onclick="viewPost()">View</button><button class="btn" onclick="deletePost()">Delete</button></div></div>';
+				document.getElementById("maincontent").appendChild(post);
+			});
+		});
 
-		}
-		function deletePost() {
+  	// function submit()
+  	// {
+  	// 	var uname = document.getElementById("uname").value;
+  	// 	var psw = document.getElementById("psw").value;
+  	// 	if(uname == "" || psw == ""){
+   //   		alert("Please fill the form");
+   //    	}else{
+   //    		var ref = firebase.database().ref('administrator/'+uname);
+   //    		ref.once('value').then(function(snapshot){
+   //    			if(snapshot.val() != null){
+   //    				alert("The ID is already exist");
+   //    			}else{
+   //    				ref.set({password: psw});
+   //    				alert("New admin accout created\nID: "+uname+"\nPassword: "+psw);
+   //    			}
+   //    		});
+   //    	}
+  	// }
+  	// fucntion viewPost(){
 
-		}
+  	// }
+  	// function deletePost() {
+
+  	// }
 
   </script>
 </body>
