@@ -1,64 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-	<title>Account Management</title>
-    <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<style type="text/css">
-		*{margin:0;padding:0;}
-		a, ul, li{text-decoration: none;}
-		
-</style> 
-</head>
-
-<body>
-	<div class="header">
-            <h1 style="color:white; text-align: center; font-size: 38px;">Used Electronics Online</h1>
-    </div>
-
-	<br>
-
-	<h1 style="color:black; text-align:center; padding-top: 30px;">Account Management</h1>
-	<br><br>
-	<table cellspacing="20px" style="margin: 0 auto;width: 450px; " >
-	<tr>
-		<td align="right">Name:</td>
-		<td><input type="text" id="name" value="name" size="30" style="height:20px"></td>
-   	</tr>	
-   	<tr>
-		<td align="right">Passward:</td>
-		<td><input type="text" id="passward" value="passward" size="30" style="height:20px"></td>
-   	</tr>
-	<tr>
-		<td align="right">Email:</td>
-		<td><input type="text" id="email" value="email" size="30" style="height:20px"></td>
-	</tr>
-	<tr>
-		<td align="right">Contact No.:</td>
-		<td><input type="text" id="no" value="no" size="30"style="height:20px"></td>
-	</tr>
-	<tr><td></td>
-        <td>
-          <input style="font-size: 15px" class="back_button" type="button" value="Back" onClick="location.href='index.html'">
-          &nbsp; 
-          <input name="save" style="font-size: 15px" class="back_button" type="button" value="Save" onclick="return validate()">
-        </td>
-      </tr>
-	</table>
-
-
-
-  <script>
-=======
 	<title>Used Electronics Online Admin</title>
 	<link rel="stylesheet" type="text/css" href="admin.css" />
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
-	  <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
 
 	<style>
-    body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+		body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
 		input{
 			height: 30px;
 			width: 250px;
@@ -78,7 +28,7 @@
 			margin-left: -200px;
 			margin-top: -100px;
 		}
-    </style>
+	</style>
 </head>
 <body>
 	<div class="admin-header">
@@ -102,70 +52,60 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			
+			<h1 style="color:black; text-align:center; padding-top: 30px;">Account Management</h1>
+			<br><br>
+			<table  cellspacing="20px" style="margin: 0 auto;width: 500px; " >
+				<tr>
+					<td width="35%" align="right">First Name:</td>
+					<td><input type="text" id="fname" value="name" size="30" style="height:20px"></td>
+				</tr>	
+				<tr>
+					<td align="right">Second Name:</td>
+					<td><input type="text" id="lname" value="passward" size="30" style="height:20px"></td>
+				</tr>
+				<tr>
+					<td align="right">Email:</td>
+					<td><input type="text" id="email" value="email" size="30" style="height:20px"></td>
+				</tr>
+				<tr>
+					<td align="right">Contact No.:</td>
+					<td><input type="text" id="no" value="no" size="30"style="height:20px"></td>
+				</tr>
+				<tr><td></td>
+					<td>
+						<input style="font-size: 15px" class="back_button" type="button" value="Back" onClick="location.href='index.html'">
+						&nbsp; 
+						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Save" onclick="return validate()">
+					</td>
+				</tr>
+			</table>
 		</div>
 		
 	</div>
-    <script>
->>>>>>> 313b3e3eda2a39a603220a0acfa41d9ecd9972f8
-  	var firebaseConfig = {
-      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
-      authDomain: "used-electronics-online.firebaseapp.com",
-      databaseURL: "https://used-electronics-online.firebaseio.com",
-      projectId: "used-electronics-online",
-      storageBucket: "used-electronics-online.appspot.com",
-      messagingSenderId: "575629351639",
-      appId: "1:575629351639:web:d9317118bcf7391e"
-    };
-    firebase.initializeApp(firebaseConfig);
+	<script>
+		var firebaseConfig = {
+			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+			authDomain: "used-electronics-online.firebaseapp.com",
+			databaseURL: "https://used-electronics-online.firebaseio.com",
+			projectId: "used-electronics-online",
+			storageBucket: "used-electronics-online.appspot.com",
+			messagingSenderId: "575629351639",
+			appId: "1:575629351639:web:d9317118bcf7391e"
+		};
+		firebase.initializeApp(firebaseConfig);
 
-<<<<<<< HEAD
-
-     function validate(){
-
-      function hasblanks(){
-       var fields = new Array("name","passward","email","no");
-       for (var i =0; i<fields.length;i++){
-        var field = document.getElementById(fields[i]);
-        if (field.value == "") {
-         return true;
-       }
-     }
-     return false;
-   }
-
-   if (hasblanks()){
-     alert("One or more compulsory\nfields is blank");
-     return false;
-   }
-
-   var element = document.getElementById("email");
-   var value = element.value;
-   if (!((value.indexOf(".") > 0) && (value.indexOf("@") > 0)) ){
-    alert("The Email address is invalid.");
-    return false; }
-     return true;}
-  	
-
-  </script>    
-	
-
-</body>
-
-
-
-
-
-</html>
-=======
-    var userid;
-    firebase.auth().onAuthStateChanged(firebaseUser=>{
+		var userid;
+		firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
 				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="Homepage" onClick="location.href=\'index.html\'"/></li></ul>';
-				console.log(firebaseUser.email);
+				document.getElementById("email").value = firebaseUser.email;
 				userid = firebaseUser.uid;
-				    console.log(userid);
+				var userRef = firebase.database().ref("/user/"+userid).once('value').then(function(snap){
+					document.getElementById("fname").value = snap.val().fName;
+					document.getElementById("lname").value = snap.val().lName;
+					document.getElementById("no").value = snap.val().pNumber;
 
+				});
 			}else{
 				document.getElementById("header-right").innerHTML = '<input name="login" class="login_button" type="button" value="Login" onClick="location.href=\'login.html\'" />'
 				console.log('not logged in');
@@ -173,7 +113,6 @@
 		});
 
 
-  </script>
+	</script>
 </body>
 </html>
->>>>>>> 313b3e3eda2a39a603220a0acfa41d9ecd9972f8
