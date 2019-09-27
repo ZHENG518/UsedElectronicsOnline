@@ -87,6 +87,13 @@
     alert("The Email address is invalid.");
     return false;
   }
+
+   var valuedFname = /^[a-zA-Z]+$/.test(txtfName.value);
+   var valuedLname = /^[a-zA-Z]+$/.test(txtlName.value);
+   if(!(valuedFname && valuedLname)){
+    alert("First or Last name is invalid.");
+    return false;
+   }
   return true;
 }
 
