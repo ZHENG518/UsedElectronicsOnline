@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Demand Show</title>
+  <title>Demand Board</title>
   <link rel="stylesheet" type="text/css" href="style.css" />
   <script src="https://www.gstatic.com/firebasejs/6.3.5/firebase.js"></script>
   <style type="text/css">
@@ -9,59 +9,72 @@
     text-align: center;
     background-color: grey;
     color: white;
+
    }*/
-   table {
+   .messages {
   border-collapse: collapse;
   width: 100%;
 }
-th, td {
+
+.messages th{
   padding: 8px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
-tr:hover {background-color:#f5f5f5;}
+.messages td{
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.messages tr:hover {background-color:#f5f5f5;}
+
+.demandmessages{
+  width: 80%;
+  margin: 0 auto;
+}
   </style>
 </head>
 <body>
-  <div class="header" >
+  <div class="header">
     <table border="0" height="100%" width="100%" style="table-layout:fixed;">
       <tr>
         <td style="padding-left:20px">
           <h1 style="color:white">Used Electronics Online</h1>
-          <h2 style="padding-top: 10px">Special Demand</h2>
+        </td>
+        <td id="header-right" style="padding-right:70px" align="right">
         </td>
       </tr>
     </table>
   </div>
 
-  <div class="nav">
-    <ul>
-        <li><a href="#home">All</a></li>
-       <li><a href="#home">Laptop</a></li>
-          <li><a href="#home">Phone</a></li>
-         <li><a href="#home">Camera</a></li>
-          <li><a href="#home">Others</a></li>
-
-    </ul>
-  </div>
-
-  <div class="content" border="1">
-    <table  width="600" height="400" style="margin: 0 auto;">
-      <tr>
-        <td>iphone 11</td>
-      </tr>
-      <tr>
-        <td >sony camera</td>
-      </tr>
-      <tr>
-        <td>headphonehhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhkkkkkk</td>
-      </tr>
-      <tr>
-        <td>radio</td>
-      </tr>
-      <tr>
-        <td>mp4</td>
-      </tr>
+  <div class="demandmessages" border="1">
+    <table  id="messages" class="messages" style="margin: 0 auto;">
     </table>
   </div>
+
+  <script>
+    var firebaseConfig = {
+      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+      authDomain: "used-electronics-online.firebaseapp.com",
+      databaseURL: "https://used-electronics-online.firebaseio.com",
+      projectId: "used-electronics-online",
+      storageBucket: "used-electronics-online.appspot.com",
+      messagingSenderId: "575629351639",
+      appId: "1:575629351639:web:d9317118bcf7391e"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    var messageRef = firebase.database().ref("message");
+    messageRef.on("value",function(snapshot){
+      snapshot.forEach(function(childSnapshot){
+        var message = document.createElement("tr");
+        message.innerHTML='<td height="130px">'+childSnapshot.val().message+'</td>';
+        document.getElementById("messages").appendChild(message);
+      });
+    });
+
+
+  </script>
+</body>
 </html>
