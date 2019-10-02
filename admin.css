@@ -34,8 +34,8 @@
 		.maincontent{
 			float: left;
 			width: 1000px;
-			/* height: 100%; */
-			background-color: skyblue;
+			/* height: 100%; #e9ebf0 #b5ceff */
+			background-color: #e9ebf0;
 		}
 		.admin-container{
 			width: 100%;
@@ -76,7 +76,7 @@
 			overflow: hidden;
 			text-align: center;
 		}
-				.user li{
+		.user li{
 			float: left;
 			vertical-align:middle;
 		}

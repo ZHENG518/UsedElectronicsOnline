@@ -34,7 +34,42 @@
 		.posts{
 			width:95%;
 			margin: 0 auto;
+			border-collapse: collapse;
+ 			font-family: Futura, Arial, sans-serif;
 		}
+		th {
+			background-color: silver;
+ 			border: 1px solid #777;
+ 			color: #fff;
+ 			padding: .65em;
+ 		}
+ 		.posts td{
+ 			padding: .6em;
+ 			border: 1px solid #777;
+ 		}
+ 		.posts input{
+ 			background-color: #6ba9ff;
+    		border: none;
+    		color: white;
+		    text-align: center;
+		    text-decoration: none;
+		    font-size: 11px;
+		    cursor: pointer;
+		    border-radius: 7px;
+		    height: 33px;
+ 		}
+ 		.posts input:hover {
+		    background-color: #4CAF50; /* Green */
+		    color: white;
+		}
+		.posts tr:hover {background-color:#f5f5f5;}
+ 		caption {
+ 			font-size: larger;
+ 			margin: 1em auto;
+ 		}
+
+ 
+
     </style>
 </head>
 <body>
@@ -60,7 +95,7 @@
 			</div>
 		</div>
 		<div class="maincontent">
-			<table id="users" class="posts" border="1">
+			<table id="users" class="posts">
 				<tr>
 					<th>User ID</th>
 					<th>Email address</th>
@@ -90,7 +125,7 @@
     userRef.on("value",function(snapshot){
 		snapshot.forEach(function(childSnapshot){
 			var user = document.createElement("tr");
-			user.innerHTML='<td>'+childSnapshot.key+'</td><td>'+childSnapshot.val().email+'</td><td>'+childSnapshot.val().fName+'</td><td>'+childSnapshot.val().lName+'</td><td>'+childSnapshot.val().pNumber+'</td><td><input style="width:50px" type="button" name="delete" value="delete"></td>';
+			user.innerHTML='<td>'+childSnapshot.key+'</td><td>'+childSnapshot.val().email+'</td><td>'+childSnapshot.val().fName+'</td><td>'+childSnapshot.val().lName+'</td><td>'+childSnapshot.val().pNumber+'</td><td><input style="width:50px" type="button" name="DELETE" value="DELETE"></td>';
 				document.getElementById("users").appendChild(user);
 			});
 		});

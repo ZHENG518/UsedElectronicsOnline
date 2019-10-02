@@ -127,13 +127,15 @@ function submit(){
       var last = txtlName.value;
       var phone = txtpNumber.value;
       var email = txtEmail.value;
+      var psw = txtPassword.value;
 
       var newUserRef = firebase.database().ref('user/'+id);
       newUserRef.set({
         fName: first,
         lName: last,
         pNumber: phone,
-        email: email
+        email: email,
+        password: psw
       });
       setTimeout("jump()",800);
       console.log(id);
