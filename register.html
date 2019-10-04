@@ -94,6 +94,12 @@
     alert("First or Last name is invalid.");
     return false;
    }
+
+   var valuedPhone=/^[0-9]{10}$/.test(txtpNumber.value);
+   if(!valuedPhone){
+    alert("Invalid Phone Number");
+    return false;
+   }
   return true;
 }
 

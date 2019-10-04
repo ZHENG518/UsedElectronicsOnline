@@ -84,11 +84,16 @@
     function validateForm() {
       var email = document.getElementById("email").value;
       var pass = document.getElementById("psw").value;
+      firebase.database().ref("user").orderByChild("email").equalTo(email).on("value",function(datasnapshot){
+        var user = datasnapshot.val();
       if(email == "" || pass == ""){
         alert("Please fill the form");
-      }else {
+      }else if(user == null){
+        alert('The account is not exist');
+      }
+      else {
         const auth = firebase.auth();
-				//User login
+        //User login
         const promise = auth.signInWithEmailAndPassword(email, pass);
         promise.catch(function(error){
           var errorCode = error.code;
@@ -105,6 +110,7 @@
           console.log(error.message);
         });
       }
+      });
     }
 
     firebase.auth().onAuthStateChanged(firebaseUser=>{
