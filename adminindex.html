@@ -131,10 +131,22 @@
 			snapshot.forEach(function(childSnapshot){
 				var post = document.createElement("div");
 				post.class="posts";
-				post.innerHTML='<div class="posts"><div class="postPic"><img src="'+childSnapshot.val().pictureURL+'" alt="Italian Trulli"></div><div class="details"><h2>'+childSnapshot.val().title+'</h2><p>'+childSnapshot.val().description+'</p></div><div class="btns"><button class="btn" onclick="viewPost()">View</button><button class="btn" onclick="deletePost()">Delete</button></div></div>';
+				post.innerHTML='<div class="posts"><div class="postPic"><img src="'+childSnapshot.val().pictureURL+'" alt="Italian Trulli"></div><div class="details"><h2>'+childSnapshot.val().title+'</h2><p>'+childSnapshot.val().description+'</p></div><div class="btns"><button class="btn" onclick="view(\''+childSnapshot.key+'\')">View</button><button class="btn" onclick="delP(\''+childSnapshot.key+'\')">Delete</button></div></div>';
 				document.getElementById("maincontent").appendChild(post);
 			});
 		});
+
+		function view(pid){
+    		window.open("ProductDetails.html?id="+pid,"_blank");
+    	}
+
+    	function delP(pid){
+    		var con = confirm("The deletion connot be cancel!");
+        	if(con){
+        		firebase.database().ref('post/'+pid).remove();
+		    	location.reload();
+	    	}
+    	}
 
   	// function submit()
   	// {
