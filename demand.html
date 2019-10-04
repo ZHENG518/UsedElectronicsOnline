@@ -33,6 +33,37 @@
   width: 80%;
   margin: 0 auto;
 }
+
+textarea{
+  width:75%;
+  height:250px;
+  margin-top:10px;
+  float:left;
+  font-size:25px;
+}
+.submmitButton{
+  margin-top:10px;
+  height:300px;
+  float:left;
+}
+.submmitButton input{
+      background-color: grey;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 7px;
+        height:80px;
+        width:100px;
+    }
+.submmitButton input:hover {
+        background-color: #4CAF50; /* Green */
+        color: white;
+    }
+
+
   </style>
 </head>
 <body>
@@ -48,7 +79,12 @@
     </table>
   </div>
 
+
   <div class="demandmessages" border="1">
+    <textarea id="message" autofocus placeholder="Describe the product you want and leave your contact details."></textarea>
+    <div class="submmitButton">
+      <input onclick="send()" style=" margin-top:100px; margin-left:20px" type="button" name="change" value="Send">
+    </div>
     <table  id="messages" class="messages" style="margin: 0 auto;">
     </table>
   </div>
@@ -73,6 +109,15 @@
         document.getElementById("messages").appendChild(message);
       });
     });
+
+    function send(){
+      var content = document.getElementById("message").value;
+      var messageRef = firebase.database().ref('message');
+      var newMessage = messageRef.push({
+          'message':content,
+        });
+        location.reload();
+    }
 
 
   </script>
