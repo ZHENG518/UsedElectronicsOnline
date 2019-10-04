@@ -56,6 +56,10 @@
 			<br><br>
 			<table  cellspacing="20px" style="margin: 0 auto;width: 500px; " >
 				<tr>
+					<td align="right">Email:</td>
+					<td id="email"></td>
+				</tr>
+				<tr>
 					<td width="35%" align="right">First Name:</td>
 					<td><input type="text" id="fname" value="name" size="30" style="height:20px"></td>
 				</tr>	
@@ -63,19 +67,19 @@
 					<td align="right">Second Name:</td>
 					<td><input type="text" id="lname" value="passward" size="30" style="height:20px"></td>
 				</tr>
-				<tr>
-					<td align="right">Email:</td>
-					<td><input type="text" id="email" value="email" size="30" style="height:20px"></td>
-				</tr>
+
 				<tr>
 					<td align="right">Contact No.:</td>
 					<td><input type="text" id="no" value="no" size="30"style="height:20px"></td>
 				</tr>
 				<tr><td></td>
-					<td>
-						<input style="font-size: 15px" class="back_button" type="button" value="Back" onClick="location.href='index.html'">
-						&nbsp; 
-						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Save" onclick="return validate()">
+					<td> 
+						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Save" onclick="changedetail()">
+					</td>
+				</tr>
+								<tr><td></td>
+					<td> 
+						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Reset Password">
 					</td>
 				</tr>
 			</table>
@@ -98,7 +102,7 @@
 		firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
 				document.getElementById("header-right").innerHTML = '<ul class="user"><li>'+firebaseUser.email+'</li><li><input class="login_button" type="button" value="Homepage" onClick="location.href=\'index.html\'"/></li></ul>';
-				document.getElementById("email").value = firebaseUser.email;
+				document.getElementById("email").innerHTML = firebaseUser.email;
 				userid = firebaseUser.uid;
 				var userRef = firebase.database().ref("/user/"+userid).once('value').then(function(snap){
 					document.getElementById("fname").value = snap.val().fName;
@@ -111,6 +115,67 @@
 				console.log('not logged in');
 			}
 		});
+
+		console.log(userid);
+
+		const txtfName = document.getElementById("fname");
+		const txtlName = document.getElementById("lname");
+		const txtpNumber = document.getElementById("no");
+
+    function validate(){
+
+      function hasblanks(){
+       var fields = new Array("fname","lname","no");
+       for (var i =0; i<fields.length;i++){
+        var field = document.getElementById(fields[i]);
+        if (field.value == "") {
+         return true;
+       }
+     }
+     return false;
+   }
+
+   if (hasblanks()){
+     alert("One or more compulsory\nfields is blank");
+     return false;
+   }
+
+
+   var valuedFname = /^[a-zA-Z]+$/.test(txtfName.value);
+   var valuedLname = /^[a-zA-Z]+$/.test(txtlName.value);
+   if(!(valuedFname && valuedLname)){
+    alert("First or Last name is invalid.");
+    return false;
+   }
+
+   var valuedPhone=/^[0-9]{10}$/.test(txtpNumber.value);
+   if(!valuedPhone){
+    alert("Invalid Phone Number");
+    return false;
+   }
+
+  return true;
+}
+
+	function changedetail(){
+		firebase.auth().onAuthStateChanged(firebaseUser=>{
+			if(firebaseUser){
+				userid = firebaseUser.uid;
+				if (validate()){
+  					const first = txtfName.value;
+  					const last = txtlName.value;
+  					const phone = txtpNumber.value;
+  					var newUserRef = firebase.database().ref('user/'+userid);
+      				newUserRef.set({
+        				fName: first,
+        				lName: last,
+        				pNumber: phone
+      				});
+  				}
+			}
+		});
+		location.reload();
+	}
 
 
 	</script>
