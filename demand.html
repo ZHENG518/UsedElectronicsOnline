@@ -74,6 +74,7 @@ textarea{
           <h1 style="color:white">Used Electronics Online</h1>
         </td>
         <td id="header-right" style="padding-right:70px" align="right">
+          <input name="login" class="login_button" type="button" value="Homepage" onclick="clo()" />
         </td>
       </tr>
     </table>
@@ -117,6 +118,10 @@ textarea{
           'message':content,
         });
         location.reload();
+    }
+
+    function clo(){
+      window.top.close();
     }
 
 
