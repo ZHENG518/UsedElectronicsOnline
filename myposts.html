@@ -136,7 +136,7 @@
 					snapshot.forEach(function(childSnapshot){
 						var post = document.createElement("tr");
 						amount += 1;
-    					post.innerHTML ='<td height="60px"><img src="'+childSnapshot.val().pictureURL+'"></td><td>'+childSnapshot.val().title+'</td><td>'+childSnapshot.val().price+'</td><td><input onclick="view(\''+childSnapshot.key+'\')" style="width:50px" type="button" name="View" value="view"><input style="width:50px" type="button" name="delete" value="delete" onclick="delP(\''+childSnapshot.key+'\')"><input style="width:80px" type="button" name="change" value="change price"></td>'
+    					post.innerHTML ='<td height="60px"><img src="'+childSnapshot.val().pictureURL+'"></td><td>'+childSnapshot.val().title+'</td><td>'+childSnapshot.val().price+'</td><td><input onclick="view(\''+childSnapshot.key+'\')" style="width:50px" type="button" name="View" value="view"><input style="width:50px" type="button" name="delete" value="delete" onclick="delP(\''+childSnapshot.key+'\')"><input style="width:80px" type="button" name="change" value="change price" onclick="change_price(\''+childSnapshot.key+'\')"></td>'
 						document.getElementById("posts").appendChild(post);
 
 					});
@@ -159,6 +159,20 @@
 	    	location.reload();
     	}
     }
+
+    function change_price(id){
+    	firebase.database().ref("/post/"+id).once('value').then(function(snap){
+    		var price=prompt("Enter the new price",snap.val().price);
+  			var valuedPrice=/^\d+(\.\d+)?$/.test(price);
+   			if(!valuedPrice || price == ""){
+    			alert("Invalid Value");
+   			}else{
+   				firebase.database().ref("/post/"+id).update({ price: price});
+   				location.reload();
+   			}
+
+		});
+  	}
 
   </script>
 </body>
