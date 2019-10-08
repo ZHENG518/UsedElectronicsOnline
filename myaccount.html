@@ -167,6 +167,7 @@
   					const phone = txtpNumber.value;
   					var newUserRef = firebase.database().ref('user/'+userid);
       				newUserRef.set({
+      					email: firebaseUser.email,
         				fName: first,
         				lName: last,
         				pNumber: phone
