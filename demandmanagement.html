@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Used Electronics Online Admin</title>
+	<link rel="stylesheet" type="text/css" href="admin.css" />
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+	<style>
+    body {font-family: Arial, Helvetica, sans-serif;}
+		input{
+			height: 30px;
+			width: 250px;
+		}
+
+		.button{
+			margin: 0 auto;
+		}
+
+		.messages {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.messages th{
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.messages td{
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.messages tr:hover {background-color:#f5f5f5;}
+
+.messages input{
+	background-color: #6ba9ff;
+    		border: none;
+    		color: white;
+		    text-align: center;
+		    text-decoration: none;
+		    font-size: 11px;
+		    cursor: pointer;
+		    border-radius: 7px;
+		    height: 33px;
+}
+
+ 
+
+    </style>
+</head>
+<body>
+	<div class="admin-header">
+		<table border="0" height="100%" width="100%" style="table-layout:fixed;">
+			<tr>
+				<td style="padding-left:20px">
+					<h1 style="color:white">Used Electronics Online Admin</h1>
+				</td>
+				<td id="header-right" style="padding-right:70px" align="right">
+					<input name="homepage" class="login_button" type="button" value="homepage" onClick="location.href='index.html'" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div class="admin-content">
+		<div class="sidebar">
+			<div class="menu">
+				<ul class="sidemenu">
+					<li><a href="adminindex.html">Post management</a></li>
+					<li><a href="usermanagement.html">User management</a></li>
+					<li><a href="demandmanagement.html">Demand Board management</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="maincontent">
+			<table  id="messages" class="messages" style="margin: 0 auto;">
+    		</table>
+		</div>
+		
+	</div>
+    <script>
+
+  	var firebaseConfig = {
+      apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
+      authDomain: "used-electronics-online.firebaseapp.com",
+      databaseURL: "https://used-electronics-online.firebaseio.com",
+      projectId: "used-electronics-online",
+      storageBucket: "used-electronics-online.appspot.com",
+      messagingSenderId: "575629351639",
+      appId: "1:575629351639:web:d9317118bcf7391e"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+        var messageRef = firebase.database().ref("message");
+    	messageRef.on("value",function(snapshot){
+     		snapshot.forEach(function(childSnapshot){
+        		var message = document.createElement("tr");
+       			message.innerHTML='<td height="130px">'+childSnapshot.val().message+'</td><td><input style="width:50px" type="button" onclick="del(\''+childSnapshot.key+'\')" name="DELETE" value="DELETE"></td>';
+        		document.getElementById("messages").appendChild(message);
+      		});
+    	});
+
+    function del(id){
+        firebase.database().ref('message/'+id).remove();
+        window.alert("Delete Successfully");
+       	location.reload();
+	}
+
+  </script>
+</body>
+</html>
