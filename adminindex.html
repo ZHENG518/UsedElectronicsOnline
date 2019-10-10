@@ -6,7 +6,7 @@
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/6.5.0/firebase-database.js"></script>
 	<style>
-		body {font-family: Arial, Helvetica, sans-serif; text-align: center;}
+		body {font-family: Arial, Helvetica, sans-serif}
 		input{
 			height: 30px;
 			width: 250px;
@@ -20,13 +20,13 @@
 			padding: 30px 10px;
 			position: absolute;
 			background-color: white;
-
 			top:50%;
 			left:50%;
 			margin-left: -200px;
 			margin-top: -100px;
 		}
 		.posts {
+			text-align: center;
 			background-color: #ff6699;
 			color: white;
 			margin: 20px;
@@ -66,6 +66,27 @@
 			width: 1000px;
 			background-color: skyblue;
 		}
+		#searchbar{
+			margin-top: 15px;
+		}
+		#searchbar input{
+			width: 700px;
+			margin-left: 20px;
+			height: 40px;
+		}
+		.searchbtn{
+			background-color: #4CAF50; /* Green */
+			border: none;
+			color: white;
+			padding: 15px 32px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 15px;
+			margin-top: 15px;
+			margin-bottom: 15px;
+			margin-left: 4px;
+		}
 	</style>
 </head>
 <body>
@@ -87,11 +108,17 @@
 				<ul class="sidemenu">
 					<li><a href="adminindex.html">Post management</a></li>
 					<li><a href="usermanagement.html">User management</a></li>
+										<li><a href="demandmanagement.html">Demand Board management</a></li>
+
 				</ul>
 			</div>
 		</div>
+		<div id="searchbar">
+				<input id="keyword" height="50px" type="text" placeholder="Post Title">
+				<button class="searchbtn" onclick="search()">Search</button>
+				<button id="cancelbtn" class="searchbtn" onclick="cacel()">Cancel</button>
+		</div>
 		<div class="maincontent" id="maincontent">
-
 		</div>
 
 	</div>
@@ -114,6 +141,8 @@
 		</div>
 	</div> -->
 	<script>
+
+		document.getElementById("cancelbtn").style.visibility = "hidden";
 
 		var firebaseConfig = {
 			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
@@ -146,6 +175,48 @@
         		firebase.database().ref('post/'+pid).remove();
 		    	location.reload();
 	    	}
+    	}
+
+    	function search(){
+    		var keyword = document.getElementById("keyword").value;
+
+    		if (keyword != ""){
+	    		document.getElementById("maincontent").innerHTML="";
+	    		var query = firebase.database().ref("post").orderByChild('title').startAt(keyword).endAt(keyword+"\uf8ff");
+	    		var amount = 0;
+	    		query.on("value", function(snapshot){
+					snapshot.forEach(function(childSnapshot){
+						var post = document.createElement("div");
+						amount += 1;
+						post.class="posts";
+						post.innerHTML='<div class="posts"><div class="postPic"><img src="'+childSnapshot.val().pictureURL+'" alt="Italian Trulli"></div><div class="details"><h2>'+childSnapshot.val().title+'</h2><p>'+childSnapshot.val().description+'</p></div><div class="btns"><button class="btn" onclick="view(\''+childSnapshot.key+'\')">View</button><button class="btn" onclick="delP(\''+childSnapshot.key+'\')">Delete</button></div></div>';
+						document.getElementById("maincontent").appendChild(post);
+					});
+				});
+				if(amount == 0){
+    				alert("No data found!");
+    				cacel();
+
+    			}else{
+				document.getElementById("cancelbtn").style.visibility = "visible";
+			}
+    		}
+    	}
+
+    	function cacel(){
+    		document.getElementById("maincontent").innerHTML="";
+    		var postRef = firebase.database().ref("post");
+		postRef.on("value",function(snapshot){
+			snapshot.forEach(function(childSnapshot){
+				var post = document.createElement("div");
+				post.class="posts";
+				post.innerHTML='<div class="posts"><div class="postPic"><img src="'+childSnapshot.val().pictureURL+'" alt="Italian Trulli"></div><div class="details"><h2>'+childSnapshot.val().title+'</h2><p>'+childSnapshot.val().description+'</p></div><div class="btns"><button class="btn" onclick="view(\''+childSnapshot.key+'\')">View</button><button class="btn" onclick="delP(\''+childSnapshot.key+'\')">Delete</button></div></div>';
+				document.getElementById("maincontent").appendChild(post);
+			});
+		});
+		document.getElementById("cancelbtn").style.visibility = "hidden";
+		document.getElementById("keyword").value = "";
+
     	}
 
   	// function submit()
