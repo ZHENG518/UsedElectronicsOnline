@@ -28,6 +28,7 @@
 			margin-left: -200px;
 			margin-top: -100px;
 		}
+
 	</style>
 </head>
 <body>
@@ -79,12 +80,11 @@
 				</tr>
 								<tr><td></td>
 					<td> 
-						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Reset Password">
+						<input name="save" style="font-size: 15px" class="back_button" type="button" value="Reset Password" onclick="changepsw()">
 					</td>
 				</tr>
 			</table>
 		</div>
-		
 	</div>
 	<script>
 		var firebaseConfig = {
@@ -176,6 +176,20 @@
 			}
 		});
 		location.reload();
+	}
+
+	function changepsw(){
+		firebase.auth().sendPasswordResetEmail(document.getElementById("email").innerHTML).then(function(){
+      		// Password reset email sent.
+      		alert("An email with a link has been sent to your email. Please use the link to reset your password. ");
+      		window.location.href='index.html';
+    	})
+    	.catch(function(error) {
+      		// Error occurred. Inspect error.code.
+   		 });
+	}
+	function hidder(){
+		document.getElementById('zhezhao').style.display="none";
 	}
 
 
