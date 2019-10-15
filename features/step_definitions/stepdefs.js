@@ -82,8 +82,10 @@ Given('I am on postmanagement page', function () {
 });
 
 When('I type a key word and click search button', function () {
- postmanagedriver.findElement(webdriver.By.id('keyword')).sendKeys('sumsang');
-
+	postmanagedriver.sleep(10000).then(function(){
+ postmanagedriver.findElement(webdriver.By.name('keyword')).sendKeys('Sony');
+ postmanagedriver.findElement(webdriver.By.name('search')).click();
+});
 });
 
 Then('I should see the result posts', function () {
@@ -112,6 +114,25 @@ Then('I should goback to the homepage', function () {
 		register_driver.getCurrentUrl().then(url => {console.log(url);});
 	});
 });
+
+var usermanagedriver;
+Given('I am on user management page', function () {
+	usermanagedriver = new webdriver.Builder().forBrowser('chrome').build();
+	return usermanagedriver.get('https://used-electronics-online.herokuapp.com/usermanagement.html');
+});
+
+When('I type a email key word and click search button', function () {
+	usermanagedriver.sleep(5000).then(function(){
+ 		usermanagedriver.findElement(webdriver.By.name('email')).sendKeys('test');
+ 		usermanagedriver.findElement(webdriver.By.name('search')).click();
+	});
+});
+
+Then('I should see the result users', function () {
+
+});
+
+
 
 //Beilei
 var detailDriver;
@@ -169,4 +190,17 @@ When('I fill in title with {string} price with {string} description with {string
 
 Then('I create a new post successfully', function () {
 	console.log("new post created");
+});
+
+var demanddriver;
+Given('I am on demandboard page', function () {
+	demanddriver = new webdriver.Builder().forBrowser('chrome').build();
+	return demanddriver.get('https://used-electronics-online.herokuapp.com/demand.html');
+});
+
+When('I can enter the message and click post button', function () {
+	demanddriver.sleep(5000).then(function(){
+	demanddriver.findElement(webdriver.By.name('message')).sendKeys('uitest test message');
+	demanddriver.findElement(webdriver.By.name('send')).click();
+	});
 });
