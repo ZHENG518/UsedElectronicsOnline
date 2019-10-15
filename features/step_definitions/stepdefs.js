@@ -58,7 +58,7 @@ var logindriver;
 Given('I am on login page', function () {
  logindriver = new webdriver.Builder().forBrowser('chrome').build();
  return logindriver.get('https://used-electronics-online.herokuapp.com/login.html');
-});y
+});
 
 When('I fill in email with {string} and password with {string}', function (value1, value2) {
  logindriver.findElement(webdriver.By.name('email')).sendKeys(value1);
