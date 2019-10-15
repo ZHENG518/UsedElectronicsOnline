@@ -82,11 +82,11 @@ textarea{
 
 
   <div class="demandmessages" border="1">
-    <textarea id="message" autofocus placeholder="Describe the product you want and leave your contact details."></textarea>
+    <textarea name="message" id="message" autofocus placeholder="Describe the product you want and leave your contact details."></textarea>
     <div class="submmitButton">
-      <input onclick="send()" style=" margin-top:100px; margin-left:20px" type="button" name="change" value="Send">
+      <input name="send" onclick="send()" style=" margin-top:100px; margin-left:20px" type="button" name="change" value="Send">
     </div>
-    <table  id="messages" class="messages" style="margin: 0 auto;">
+    <table id="messages" class="messages" style="margin: 0 auto;">
     </table>
   </div>
 

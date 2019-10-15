@@ -5,3 +5,5 @@ Feature: Change Price Features
 
   Scenario: Change Price
     Given I am on mypost page
+    When I click change price button
+    Then I can enter the new price

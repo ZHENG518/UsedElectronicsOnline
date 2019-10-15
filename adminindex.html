@@ -108,14 +108,14 @@
 				<ul class="sidemenu">
 					<li><a href="adminindex.html">Post management</a></li>
 					<li><a href="usermanagement.html">User management</a></li>
-										<li><a href="demandmanagement.html">Demand Board management</a></li>
+					<li><a href="demandmanagement.html">Demand Board management</a></li>
 
 				</ul>
 			</div>
 		</div>
 		<div id="searchbar">
-				<input id="keyword" height="50px" type="text" placeholder="Post Title">
-				<button class="searchbtn" onclick="search()">Search</button>
+				<input name="keyword" id="keyword" height="50px" type="text" placeholder="Post Title">
+				<button name="search" class="searchbtn" onclick="search()">Search</button>
 				<button id="cancelbtn" class="searchbtn" onclick="cacel()">Cancel</button>
 		</div>
 		<div class="maincontent" id="maincontent">
@@ -123,23 +123,6 @@
 
 	</div>
 
-	  <!-- <div class="container">
-		<h2>Create a new admin account</h2>
-		<table cellspacing="30px">
-			<tr>
-				<td><label for="uname"><b>ID</b></label></td>
-				<td><input id="uname" type="text" placeholder="User ID" name="uname" required></td>
-			</tr>
-			<tr>
-				<td><label for="psw"><b>Password</b></label></td>
-				<td><input id="psw" type="text" placeholder="Password" name="psw" required></td>
-			</tr>
-		</table>
-		<div class="button">
-			<button onclick="submit()" class="back_button">Create</button>
-			<button onclick="location.href='admin.html'" class="back_button">Back</button>
-		</div>
-	</div> -->
 	<script>
 
 		document.getElementById("cancelbtn").style.visibility = "hidden";
@@ -219,30 +202,7 @@
 
     	}
 
-  	// function submit()
-  	// {
-  	// 	var uname = document.getElementById("uname").value;
-  	// 	var psw = document.getElementById("psw").value;
-  	// 	if(uname == "" || psw == ""){
-   //   		alert("Please fill the form");
-   //    	}else{
-   //    		var ref = firebase.database().ref('administrator/'+uname);
-   //    		ref.once('value').then(function(snapshot){
-   //    			if(snapshot.val() != null){
-   //    				alert("The ID is already exist");
-   //    			}else{
-   //    				ref.set({password: psw});
-   //    				alert("New admin accout created\nID: "+uname+"\nPassword: "+psw);
-   //    			}
-   //    		});
-   //    	}
-  	// }
-  	// fucntion viewPost(){
 
-  	// }
-  	// function deletePost() {
-
-  	// }
 
   </script>
 </body>

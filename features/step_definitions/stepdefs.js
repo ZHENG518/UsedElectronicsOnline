@@ -27,30 +27,29 @@ Then('I should see {string} button', function (category) {
 var mypostdriver;
 Given('I am on mypost page', function () {
 	mypostdriver = new webdriver.Builder().forBrowser('chrome').build();
-	mypostdriver.get('https://used-electronics-online.herokuapp.com/login.html');
-	mypostdriver.findElement(webdriver.By.name('email')).sendKeys('test@gmail.com');
- 	mypostdriver.findElement(webdriver.By.name('psw')).sendKeys('123456');
- 	mypostdriver.findElement(webdriver.By.name('login')).click();
- 	mypostdriver.sleep(90000);
- 	mypostdriver.findElement(webdriver.By.name('myaccount')).click();
- // 	mypostdriver.sleep(10000).then(function(){
-	// 	mypostdriver.findElement(webdriver.By.name('myaccount')).click();
-	// });
-	// mypostdriver.sleep(1000000).then(function(){
-	// 	mypostdriver.findElement(webdriver.By.id('fname')).sendKeys('123456');
-	// });
-
+	mypostdriver.get('https://used-electronics-online.herokuapp.com/myposts.html');
+	mypostdriver.sleep(10000).then(function(){
+		mypostdriver.findElement(webdriver.By.name('login')).click();
+		mypostdriver.sleep(5000).then(function(){
+			mypostdriver.findElement(webdriver.By.name('email')).sendKeys('test@gmail.com');
+	 		mypostdriver.findElement(webdriver.By.name('psw')).sendKeys('123456');
+	 		mypostdriver.findElement(webdriver.By.name('login')).click();
+	 		mypostdriver.sleep(10000).then(function(){
+			 	mypostdriver.findElement(webdriver.By.name('change')).click();
+			 	mypostdriver.sleep(100).then(function(){
+				 	mypostdriver.switchTo().alert().sendKeys('2000');
+				 	mypostdriver.switchTo().alert().accept();
+			 	});
+			});
+		});
+	});
 });
 
-// When('I click change price button', function () {
-// 	mypostdriver.sleep(1000000).then(function(){
-// 		mypostdriver.findElement(webdriver.By.id('fname')).sendKeys('123456');
-// 	});
-// });
+When('I click change price button', function () {
+});
 
-// Then('I should see a text box appear', function (category) {
-	
-// });
+Then('I can enter the new price', function () {
+});
 
 
 
@@ -59,7 +58,7 @@ var logindriver;
 Given('I am on login page', function () {
  logindriver = new webdriver.Builder().forBrowser('chrome').build();
  return logindriver.get('https://used-electronics-online.herokuapp.com/login.html');
-});
+});y
 
 When('I fill in email with {string} and password with {string}', function (value1, value2) {
  logindriver.findElement(webdriver.By.name('email')).sendKeys(value1);
@@ -75,6 +74,22 @@ Then('I should see the homepage', function () {
 
 Then('I should see warning message', function () {
 });
+
+var postmanagedriver;
+Given('I am on postmanagement page', function () {
+ postmanagedriver = new webdriver.Builder().forBrowser('chrome').build();
+ postmanagedriver.get('https://used-electronics-online.herokuapp.com/adminindex.html');
+});
+
+When('I type a key word and click search button', function () {
+ postmanagedriver.findElement(webdriver.By.id('keyword')).sendKeys('sumsang');
+
+});
+
+Then('I should see the result posts', function () {
+
+});
+
 
 //Xu
 var register_driver;
@@ -113,6 +128,28 @@ Then('I should see details of the post', function () {
 		var phoelement = detailDriver.findElement(webdriver.By.id('phone'));
 		var emailelement = detailDriver.findElement(webdriver.By.id('email'));
 		var diselement = detailDriver.findElement(webdriver.By.id('Discrp'));
+	});
+});
+
+var myaccountdriver;
+Given('I am on myaccount page', function () {
+	myaccountdriver = new webdriver.Builder().forBrowser('chrome').build();
+	myaccountdriver.get('https://used-electronics-online.herokuapp.com/myaccount.html');
+});
+
+Then('I can enter the new first name and click save button', function () {
+	myaccountdriver.sleep(15000).then(function(){
+		myaccountdriver.findElement(webdriver.By.name('login')).click();
+		myaccountdriver.sleep(5000).then(function(){
+			myaccountdriver.findElement(webdriver.By.name('email')).sendKeys('test@gmail.com');
+	 		myaccountdriver.findElement(webdriver.By.name('psw')).sendKeys('123456');
+	 		myaccountdriver.findElement(webdriver.By.name('login')).click();
+	 		myaccountdriver.sleep(10000).then(function(){
+	 			myaccountdriver.findElement(webdriver.By.id('fname')).clear();
+			 	myaccountdriver.findElement(webdriver.By.id('fname')).sendKeys('uitestfn');
+			 	myaccountdriver.findElement(webdriver.By.name('save')).click();
+			});
+		});
 	});
 });
 
