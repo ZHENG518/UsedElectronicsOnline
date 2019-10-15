@@ -31,6 +31,11 @@ Given('I am on mypost page', function () {
 	mypostdriver.findElement(webdriver.By.name('email')).sendKeys('test@gmail.com');
  	mypostdriver.findElement(webdriver.By.name('psw')).sendKeys('123456');
  	mypostdriver.findElement(webdriver.By.name('login')).click();
+ 	mypostdriver.sleep(9000).then(function(){
+		mypostdriver.findElement(webdriver.By.name('myaccount')).click();
+	    mypostdriver.findElement(webdriver.By.id('myposts')).click();
+	});
+ 	
 });
 
 // When('I click change price button', function () {
