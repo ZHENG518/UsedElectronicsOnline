@@ -5,5 +5,3 @@ Feature: Change Price Features
 
   Scenario: Change Price
     Given I am on mypost page
-    When I click change price button
-    Then I should see a text box appear

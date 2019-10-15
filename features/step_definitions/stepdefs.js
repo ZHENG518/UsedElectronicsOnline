@@ -33,6 +33,15 @@ Given('I am on mypost page', function () {
  	mypostdriver.findElement(webdriver.By.name('login')).click();
 });
 
+// When('I click change price button', function () {
+
+// });
+
+// Then('I should see a text box appear', function (category) {
+	
+// });
+
+
 
 // Bocheng
 var logindriver;
