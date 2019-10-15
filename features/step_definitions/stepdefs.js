@@ -24,6 +24,16 @@ Then('I should see {string} button', function (category) {
 	});
 });
 
+var mypostdriver;
+Given('I am on mypost page', function () {
+	mypostdriver = new webdriver.Builder().forBrowser('chrome').build();
+	mypostdriver.get('https://used-electronics-online.herokuapp.com/login.html');
+	mypostdriver.findElement(webdriver.By.name('email')).sendKeys('test@gmail.com');
+ 	mypostdriver.findElement(webdriver.By.name('psw')).sendKeys('123456');
+ 	mypostdriver.findElement(webdriver.By.name('login')).click();
+});
+
+
 // Bocheng
 var logindriver;
 Given('I am on login page', function () {
