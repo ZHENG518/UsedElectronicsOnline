@@ -126,7 +126,7 @@
 	<script>
 
 		document.getElementById("cancelbtn").style.visibility = "hidden";
-
+		// Initialize the Firebase
 		var firebaseConfig = {
 			apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
 			authDomain: "used-electronics-online.firebaseapp.com",
@@ -137,7 +137,7 @@
 			appId: "1:575629351639:web:d9317118bcf7391e"
 		};
 		firebase.initializeApp(firebaseConfig);
-
+		// Connect to the Firebase and access the posts data from it
 		var postRef = firebase.database().ref("post");
 		postRef.on("value",function(snapshot){
 			snapshot.forEach(function(childSnapshot){
@@ -147,11 +147,11 @@
 				document.getElementById("maincontent").appendChild(post);
 			});
 		});
-
+		// view button->view the post details with pid
 		function view(pid){
     		window.open("ProductDetails.html?id="+pid,"_blank");
     	}
-
+			// delete button->delete the post with pid
     	function delP(pid){
     		var con = confirm("The deletion connot be cancel!");
         	if(con){
@@ -159,7 +159,7 @@
 		    	location.reload();
 	    	}
     	}
-
+			//searchbar->search the post based on the post title ("keyword")
     	function search(){
     		var keyword = document.getElementById("keyword").value;
 
@@ -185,7 +185,7 @@
 			}
     		}
     	}
-
+			// Cancel search once the user click on the Cancel button
     	function cacel(){
     		document.getElementById("maincontent").innerHTML="";
     		var postRef = firebase.database().ref("post");

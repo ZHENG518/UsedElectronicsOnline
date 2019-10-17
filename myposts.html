@@ -111,6 +111,7 @@
 
 	</div>
     <script>
+		// Initialize the Firebase
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
@@ -121,7 +122,7 @@
       appId: "1:575629351639:web:d9317118bcf7391e"
     };
     firebase.initializeApp(firebaseConfig);
-
+		// Connect to the Firebase and access the post data of specific user from it
     var userid;
     firebase.auth().onAuthStateChanged(firebaseUser=>{
 			if(firebaseUser){
@@ -146,11 +147,11 @@
 				console.log('not logged in');
 			}
 		});
-
+		//View the post details by users
     function view(pid){
     	window.open("ProductDetails.html?id="+pid,"_blank");
     }
-
+		//Delete the post by users
     function delP(pid){
     	var con = confirm("Are you sure you want to delete this post?");
     	if(con){
@@ -158,7 +159,7 @@
 	    	location.reload();
     	}
     }
-
+		//Change the product price with the Product id
     function change_price(id){
     	firebase.database().ref("/post/"+id).once('value').then(function(snap){
     		var price=prompt("Enter the new price",snap.val().price);

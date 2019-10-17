@@ -88,7 +88,7 @@
 		    border-radius: 7px;
 		    height: 33px;
 		}
- 
+
 
     </style>
 </head>
@@ -135,12 +135,12 @@
 				<tbody id="users"></tbody>
 			</table>
 		</div>
-		
+
 	</div>
     <script>
 
 	document.getElementById("cancelbtn").style.visibility = "hidden";
-
+	// Initialize the Firebase
   	var firebaseConfig = {
       apiKey: "AIzaSyBa5C0ajfZM6f7eE64L7n6lmk9QP8pHlAo",
       authDomain: "used-electronics-online.firebaseapp.com",
@@ -151,7 +151,7 @@
       appId: "1:575629351639:web:d9317118bcf7391e"
     };
     firebase.initializeApp(firebaseConfig);
-
+		// Connect to the Firebase and access the users data from it
     var userRef = firebase.database().ref("user");
     userRef.on("value",function(snapshot){
 		snapshot.forEach(function(childSnapshot){
@@ -160,7 +160,7 @@
 				document.getElementById("users").appendChild(user);
 			});
 		});
-
+		// Delete button on-click function
     function deletUser(id){
         var con = confirm("This account and posts by this user will be deleted.");
         if(con){
@@ -168,13 +168,13 @@
 	        delU(id);
 	    }
 	}
-
+	// Delete the selected user with Delete button
 	function delU(id){
         firebase.database().ref('user/'+id).remove();
         window.alert("Delete Successfully");
        	location.reload();
 	}
-
+	// Delete the all posts posted by the selected user
 	function delP(id){
 		var query = firebase.database().ref("post").orderByChild("userid").equalTo(id);
  		query.on("value", function(snapshot){
@@ -184,10 +184,10 @@
 		});
 
 	}
-
+				//Search users based on the email address
 	    	function search(){
     		var keyword = document.getElementById("keyword").value;
- 
+
     		if (keyword != ""){
 	    		document.getElementById("users").innerHTML="";
 	    		var query = firebase.database().ref("user").orderByChild('email').startAt(keyword).endAt(keyword+"\uf8ff");
@@ -209,6 +209,8 @@
 			}
     		}
     	}
+
+			//Cancel searching users with Cancel button
     	 function cacel(){
     		document.getElementById("users").innerHTML="";
     		var userRef = firebase.database().ref("user");
