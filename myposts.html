@@ -173,6 +173,9 @@
    						firebase.database().ref("/post/"+id).update({ price: price});
    						location.reload();
    					}
+   				}else{
+   					firebase.database().ref("/post/"+id).update({ price: price});
+   					location.reload();
    				}
    			}
 
