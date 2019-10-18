@@ -183,6 +183,7 @@
 	}
 
 	//click handler for rest password button
+	
 	function changepsw(){
 		firebase.auth().sendPasswordResetEmail(document.getElementById("email").innerHTML).then(function(){
       		// Password reset email sent.

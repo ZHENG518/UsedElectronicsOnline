@@ -167,8 +167,13 @@
    			if(!valuedPrice || price == ""){
     			alert("Invalid Value");
    			}else{
-   				firebase.database().ref("/post/"+id).update({ price: price});
-   				location.reload();
+   				if(price.length > 5){
+   					var con = confirm("Are you sure you want to set this Price?");
+   					if(con){
+   						firebase.database().ref("/post/"+id).update({ price: price});
+   						location.reload();
+   					}
+   				}
    			}
 
 		});
